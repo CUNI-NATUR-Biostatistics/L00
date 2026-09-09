@@ -2,8 +2,8 @@ schema_version: 1
 course: MB120P163
 lesson: L00
 academic_year: "2026-27"
-title: "Doplňte název lekce"
-subtitle: "Doplňte podnázev lekce"
+title: "První kroky v R"
+subtitle: "Praktický úvod do R a RStudia pro úplné začátečníky"
 resources:
   learning:
     html: Learning_materials/skripta.html
@@ -16,7 +16,9 @@ resources:
   exercises:
     - label: "R skript ke cvičení"
       path: Exercises/cviceni.R
-  data: []
+  data:
+    - label: "Data Palmer Penguins"
+      path: data/palmer_penguins.csv
   extras:
     - label: "Licence materiálů a kódu"
       path: LICENSE.md

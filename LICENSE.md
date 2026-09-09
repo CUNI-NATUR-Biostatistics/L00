@@ -28,3 +28,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 These licenses do not cover third-party datasets, photographs, illustrations, fonts, portraits, logos, trademarks, or other material identified as coming from another source. Such items remain subject to their own terms and attribution requirements. The Charles University name and marks are not licensed for endorsement or branding by this file.
 
+### Palmer Penguins dataset
+
+`data/palmer_penguins.csv` is derived from `palmerpenguins::penguins` version 0.1.1. The original data were collected and made available by Dr Kristen Gorman and the Palmer Station Long Term Ecological Research program. Dataset documentation, citation guidance, and source links are available from the [palmerpenguins project](https://allisonhorst.github.io/palmerpenguins/) and its [R Journal article](https://journal.r-project.org/articles/RJ-2022-020/).
+
+The source data are released under the [CC0 1.0 Universal public-domain dedication](https://creativecommons.org/publicdomain/zero/1.0/). The lesson file preserves the source row order, retains `species`, `flipper_length_mm`, and `body_mass_g`, removes the two rows incomplete on those fields, and omits source row names. It contains 342 rows and has SHA-256 checksum `a911f303c2e55847dd81c943b3d3cf75c0d90a0d0ac7399cf6a531ed918f7560`.
+
