@@ -14,7 +14,7 @@
 - Base branch and commit: `main` at `a082d96` (`Initial commit`)
 - `git status --short` reviewed: [x]
 - Stage 0 record is on this branch: [x]
-- Planning PR: Draft PR to be opened after the validated commit is pushed
+- Planning PR: Draft PR #1
 
 ## Inspiration consulted
 

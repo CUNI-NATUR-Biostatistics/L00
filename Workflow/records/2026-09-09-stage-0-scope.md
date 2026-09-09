@@ -15,7 +15,7 @@
 - Source template: `_L-template/main` at `c46b8cb` (`Add dormant PollsLive adapter to lesson template (#8)`)
 - `git status --short` reviewed: [x]
 - Previous-stage PR merged: N/A
-- Planned PR: Draft planning PR for Stages 0-1; to be opened after the validated commit is pushed
+- Planned PR: Draft planning PR #1 for Stages 0-1
 
 ## Topic sentence
 
