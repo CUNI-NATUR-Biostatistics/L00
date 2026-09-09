@@ -1,48 +1,41 @@
-<!--
-Po vytvoření nového lekčního repozitáře:
-1. Nahraďte všechny výskyty LXX skutečným číslem lekce.
-2. Doplňte název, podnázev, veřejný přehled lekce a ověřené výsledky učení.
-3. Zkontrolujte všechny odkazy a názvy souborů podle website-release.yml.
-4. Odstraňte tento komentář a všechny zbývající texty DOPLŇTE.
-5. Běžné odstavce v Markdownu ručně nezalamujte na pevnou šířku.
--->
+# L00 — První kroky v R
 
-# LXX — DOPLŇTE název lekce
+**Praktický úvod do R a RStudia pro úplné začátečníky**
 
-**DOPLŇTE stručný podnázev lekce**
-
-Tento repozitář obsahuje DOPLŇTE pořadí lekce kurzu [Biostatistika a plánování ekologických pokusů (MB120P163)](https://cuni-natur-biostatistics.github.io/) vyučovaného na Přírodovědecké fakultě Univerzity Karlovy.
+Tento repozitář obsahuje volitelnou nultou lekci kurzu [Biostatistika a plánování ekologických pokusů (MB120P163)](https://cuni-natur-biostatistics.github.io/) vyučovaného na Přírodovědecké fakultě Univerzity Karlovy.
 
 Úplný přehled kurzu, rozvrh, pravidla hodnocení a materiály ostatních lekcí najdete na [veřejném HUBu kurzu](https://cuni-natur-biostatistics.github.io/).
 
 ## O této lekci
 
-DOPLŇTE hlavní biologickou nebo ekologickou otázku, kterou lekce řeší, a jednou větou vysvětlete její místo v návaznosti kurzu.
+Jak se dostat od prázdné relace R k uloženému a znovu vytvořitelnému výsledku? L00 je praktické setkání pro studenty, kteří zatím nemají zkušenost s R ani s programováním.
 
-DOPLŇTE dva až tři krátké odstavce srozumitelné i člověku, který tento repozitář našel samostatně na internetu. Představte hlavní dataset nebo datový příběh, statistické pojmy a způsob uvažování, kterými lekce prochází. Nepopisujte historii vývoje repozitáře, interní větve, schvalovací stav ani nahrazené datasety.
+Při prezenční výuce se opakovaně střídá krátká orientace v prezentaci, živá ukázka vyučujícího v RStudiu, vlastní krok studentů a společná kontrola výsledku. Studenti si vytvoří projekt a skript, vyzkoušejí Console, objekty, funkce a nápovědu, nainstalují jeden lehký balíček a načtou CSV pomocí relativní cesty.
 
-DOPLŇTE závěrečnou větu vysvětlující, proč je lekce důležitá pro další části kurzu nebo pro práci s biologickými daty.
+Datový příběh využívá skutečná měření tučňáků z Palmerova souostroví. Jedna řádka představuje jednoho tučňáka a tabulka obsahuje druh, délku křídla a tělesnou hmotnost. Cílem není statistická interpretace, ale bezpečně projít cestu od dat k jednoduchému obrázku, uložit jej a po restartu R jej znovu vytvořit ze skriptu.
+
+Tato pracovní rutina je základem všech dalších lekcí, ve kterých už budou studenti popisovat proměnné, formulovat modely a interpretovat biologická data.
 
 ## Výsledky učení
 
 Po prostudování této lekce dokážete:
 
-- DOPLŇTE pozorovatelnou studentskou činnost;
-- DOPLŇTE pozorovatelnou studentskou činnost;
-- DOPLŇTE pozorovatelnou studentskou činnost;
-- DOPLŇTE pozorovatelnou studentskou činnost;
-- DOPLŇTE pozorovatelnou studentskou činnost.
+- rozpoznat panely Source, Console, Environment a Files/Plots a určit, kde se objeví kód, výstup, objekty a grafy;
+- vytvořit nebo otevřít RStudio Project a vytvořit, komentovat, uložit a spustit R skript;
+- použít R jako kalkulačku, vytvořit objekt, zavolat funkci s pojmenovanými argumenty, otevřít nápovědu a opravit jednoduchou chybu;
+- ručně nainstalovat jeden balíček a použít jeho obsah pomocí zápisu `balicek::objekt` nebo `balicek::funkce` bez `library()`;
+- načíst CSV relativní cestou, prohlédnout data, vytvořit a uložit jednoduchý výstup a po restartu R celý postup zopakovat ze skriptu.
 
 ## Materiály pro studenty
 
-Následující odkazy vedou vždy na nejnovější schválené vydání LXX. Rozpracovaná verze ve větvi `main` může být novější, ale není určena jako závazná studijní verze.
+Následující odkazy vedou vždy na nejnovější schválené vydání L00. Rozpracovaná verze ve větvi `main` může být novější, ale není určena jako závazná studijní verze.
 
 | Materiál | Online verze | PDF |
 | --- | --- | --- |
-| Skripta | [Číst online](https://cuni-natur-biostatistics.github.io/LXX/current/learning/) | [Stáhnout PDF](https://cuni-natur-biostatistics.github.io/LXX/current/learning/skripta.pdf) |
-| Prezentace | [Otevřít slidy](https://cuni-natur-biostatistics.github.io/LXX/current/presentation/) | [Stáhnout PDF](https://cuni-natur-biostatistics.github.io/LXX/current/presentation/presentation.pdf) |
+| Skripta pro samostudium a pozdější připomenutí | [Číst online](https://cuni-natur-biostatistics.github.io/L00/current/learning/) | [Stáhnout PDF](https://cuni-natur-biostatistics.github.io/L00/current/learning/skripta.pdf) |
+| Orientační prezentace pro prezenční výuku | [Otevřít slidy](https://cuni-natur-biostatistics.github.io/L00/current/presentation/) | [Stáhnout PDF](https://cuni-natur-biostatistics.github.io/L00/current/presentation/presentation.pdf) |
 
-Pro navazující praktické cvičení je připraven [R skript ke stažení](https://cuni-natur-biostatistics.github.io/LXX/current/code/cviceni.R). Skript obsahuje úlohy a kód, se kterými budete pracovat během praktika.
+[R skript ke stažení](https://cuni-natur-biostatistics.github.io/L00/current/code/cviceni.R) slouží při prezenční výuce jako pracovní plocha studentů a později jako záznam praktického postupu. [Data Palmer Penguins](https://cuni-natur-biostatistics.github.io/L00/current/data/palmer_penguins.csv) jsou součástí vydání, takže základní postup funguje i bez instalace balíčku.
 
 - [HUB kurzu](https://cuni-natur-biostatistics.github.io/) je hlavní vstup ke všem veřejným studijním materiálům.
 - [Moodle kurzu](https://dl2.cuni.cz/course/view.php?id=106) slouží zapsaným studentům pro oznámení, testy, zadání, odevzdávání a individuální výsledky.
@@ -53,16 +46,16 @@ Pro navazující praktické cvičení je připraven [R skript ke stažení](http
 
 - `Learning_materials/skripta.qmd` je zdroj skript; výsledky jsou `Learning_materials/skripta.html` a `Learning_materials/skripta.pdf`.
 - `Presentation/presentation.qmd` je zdroj slidů; výsledky jsou `Presentation/presentation.html` a `Presentation/presentation.pdf`.
-- `Exercises/cviceni.R` je studentský R skript pro praktické cvičení.
+- `Exercises/cviceni.R` je studentský R skript pro praktickou výuku.
 - `data/` obsahuje datové soubory specifické pro tuto lekci.
 - `R/` obsahuje podporované renderovací a tematické nástroje.
 - `theme/` obsahuje synchronizovanou lokální kopii společné vizuální identity kurzu.
-- `pollslive/` obsahuje neaktivní šablonu pro pozdější zapojení schváleného opakovacího kvízu; bez souborů `pollslive/config.json` a `pollslive/quiz.json` nijak nemění render lekce.
+- `pollslive/` obsahuje neaktivní šablonu pro případné pozdější zapojení schváleného opakovacího kvízu; bez souborů `pollslive/config.json` a `pollslive/quiz.json` nijak nemění render lekce.
 - `Workflow/` obsahuje záznamy rozhodnutí, kontrol a schválení během přípravy lekce; není součástí veřejného release balíčku.
 
 ### Reprodukovatelné prostředí
 
-Repozitář používá `renv`. Po klonování otevřete `LXX.Rproj` a v čerstvé R relaci spusťte:
+Repozitář používá `renv`. Po klonování otevřete `L00.Rproj` a v čerstvé R relaci spusťte:
 
 ```r
 renv::restore()
@@ -79,7 +72,7 @@ Samostatně lze použít `R/render_skripta.R` nebo `R/render_presentation.R`. P�
 
 ### Publikování
 
-`website-release.yml` je explicitní seznam souborů povolených ve veřejném balíčku. Větev `main` vytváří veřejný náhled, zatímco stabilní tag `LXX-vMAJOR.MINOR.PATCH-YYYYMMDD` vytváří neměnné vydání a aktualizuje cestu `/LXX/current/`. Před prvním vydáním nahraďte v manifestu i v tomto README všechny zástupné údaje skutečnými hodnotami.
+`website-release.yml` je explicitní seznam souborů povolených ve veřejném balíčku. Větev `main` vytváří veřejný náhled, zatímco stabilní tag `L00-vMAJOR.MINOR.PATCH-YYYYMMDD` vytváří neměnné vydání a aktualizuje cestu `/L00/current/`.
 
 Podrobný publikační postup je v [`WEBSITE_RELEASES.md`](WEBSITE_RELEASES.md). Postup tvorby a kontroly lekce je v [`Workflow/README.md`](Workflow/README.md).
 
@@ -87,4 +80,4 @@ Před vydáním je nutné zkontrolovat vyrenderované HTML a PDF, úplnost manif
 
 ## Licence
 
-Původní výukový obsah je licencován pod CC BY 4.0 a software pod licencí MIT. Přesné vymezení, doporučená citace a výjimky pro převzatá data, média, fonty, loga a další položky jsou v [`LICENSE.md`](LICENSE.md).
+Původní výukový obsah je licencován pod CC BY 4.0 a software pod licencí MIT. Palmer Penguins jsou uvolněni pod CC0. Přesné vymezení, doporučená citace a výjimky pro převzatá data, média, fonty, loga a další položky jsou v [`LICENSE.md`](LICENSE.md).
