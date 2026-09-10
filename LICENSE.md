@@ -34,3 +34,9 @@ These licenses do not cover third-party datasets, photographs, illustrations, fo
 
 The source data are released under the [CC0 1.0 Universal public-domain dedication](https://creativecommons.org/publicdomain/zero/1.0/). The lesson file preserves the source row order, retains `species`, `flipper_length_mm`, and `body_mass_g`, removes the two rows incomplete on those fields, and omits source row names. It contains 342 rows and has SHA-256 checksum `a911f303c2e55847dd81c943b3d3cf75c0d90a0d0ac7399cf6a531ed918f7560`.
 
+### RStudio interface screenshot
+
+`Learning_materials/figures/rstudio-fresh-install.png` is an unmodified copy of [RStudio - Fresh Install.png](https://commons.wikimedia.org/wiki/File:RStudio_-_Fresh_Install.png), created by Wikimedia Commons user Rcragun on 11 August 2026 and licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The local copy has SHA-256 checksum `2F63D1315DC73AE5F6BA2826A80452DFA7D4E6DF27EDEB18394F0D1EEEDDCDC9`.
+
+The adjacent `rstudio-source.svg`, `rstudio-console.svg`, `rstudio-environment.svg`, and `rstudio-tabs.svg` files are viewport crops of that screenshot. `rstudio-overview.svg` adds four numbered markers to the same screenshot. These derived files do not redraw the depicted interface and are distributed under CC BY-SA 4.0. Detailed modification and attribution notes are recorded in `Learning_materials/figures/README.md`.
+
