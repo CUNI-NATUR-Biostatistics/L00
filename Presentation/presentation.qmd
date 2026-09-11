@@ -1,5 +1,5 @@
 ---
-format: 
+format:
   revealjs:
     slide-number: true
     theme: [default, ../theme/presentation_theme.scss, ../theme/presentation_components.scss]
@@ -25,43 +25,21 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-if (!require("here")) install.packages("here")
-
-library(here)
-
 here::i_am("Presentation/presentation.qmd")
+source(here::here("R", "set_r_theme.R"))
 
-if (!require("tidyverse")) install.packages("tidyverse")
-if (!require("ggbeeswarm")) install.packages("ggbeeswarm")
-if (!require("ggview")) install.packages("ggview")
-if (!require("magick")) install.packages("magick")
-if (!require("cowplot")) install.packages("cowplot")
-if (!require("remotes")) install.packages("remotes")
-if (!require("waffle")) remotes::install_github("hrbrmstr/waffle")
-
-library(tidyverse)
-library(ggbeeswarm)
-library(ggview)
-library(magick)
-library(cowplot)
-library(waffle)
-
-path_materials <-
-  "Presentation/Materials"
+path_materials <- "Presentation/Materials"
 
 include_local_figure <- function(data_source) {
   knitr::include_graphics(
-    path = here::here(
-      path_materials,
-      data_source
-    ),
+    path = here::here(path_materials, data_source),
     error = TRUE
   )
 }
 ```
 
 ```{r}
-#| label: dynamic link generation
+#| label: dynamic-link-generation
 #| include: false
 project_name <-
   basename(here::here())
@@ -78,15 +56,16 @@ github_url <-
 slides_url <-
   paste0(
     "https://CUNI-NATUR-Biostatistics.github.io/",
-    project_name, "/"
+    project_name,
+    "/"
   )
 ```
 
-## Název přednášky
+## První kroky v R a RStudiu
 
 <br>
 
-::: {.text-color-white .text-font-heading .text-size-heading .text-bold}
+::: {.text-color-indigo_velvet .text-font-heading .text-size-heading1 .text-bold}
 `r display_name`
 :::
 
@@ -96,1114 +75,779 @@ slides_url <-
 
 [Moodle](https://dl2.cuni.cz/course/view.php?id=106)
 
-## Výsledky učení
+::: {.notes}
+0-1 min. Nechte titulní snímek zobrazený a požádejte všechny, aby otevřeli RStudio. Kontrolujeme pouze to, že se otevře okno. Do žádného panelu zatím nic nepíšeme.
+:::
 
-Po absolvování této přednášky budete schopni:
-
-- TODO: výsledek učení 1
-- TODO: výsledek učení 2
-- TODO: výsledek učení 3
-
-# Obsah přednášky
-
-## Snímek 1
-
-TODO: obsah snímku
+## Jak vytvoříme obrázek z měření tučňáků a uchováme jeho postup?
 
 ```{r}
-#| label: demo-plot
-#| echo: true
-# TODO: ukázka kódu v R
+#| label: data-a-obrazek-na-uvod
+#| include: false
+data_tucnaci_uvod <-
+  read.csv(
+    file = here::here("data", "palmer_penguins.csv")
+  )
 ```
 
-## Shrnutí
+:::: {.columns .align-top}
 
-- TODO: klíčové body přednášky
+::: {.column width="45%"}
 
-# Slide Creator's Guide {.center}
-
-[Slides in this section are intended for lecture authors, not students. Delete this section and the `# Tools Overview` section before using as an actual lecture.]{.text-size-smaller .text-color-grey_olive}
-
-# Golden Rules {.center}
-
-## Rule 1 — Data story first {.bg-parchment}
-
-::: columns
-::: {.column width="48%"}
-::: {.card-warning}
-[Wrong]{.card-title}
-**Pearson correlation**
-
-Pearson's correlation coefficient measures the strength of the linear relationship between two variables...
-
-[formula]
-:::
-:::
-::: {.column width="48%"}
-::: {.card-insight}
-[Right]{.card-title}
-**How do we turn the shape of a cloud into a number?**
-
-[scatter plot the students have seen for several slides already]
-
-*What properties would such a number need to have?*
-
-→ **Correlation coefficient** [the name arrives as the answer]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-:::
-
-[A statistical term never opens a concept as a heading. Data first → observation → question → only then the name.]{.text-size-smaller .text-color-grey_olive}
-
-## Rule 2 — One idea per slide
-
-**Every slide communicates one thing.**
-
-If you need to say two things, use two slides.
-
-If you need to say three things, add an interaction between them.
-
-::: {.takeaway-strip}
-**One message. One slide. Contribute to understanding — not to overload.**
-:::
-
-[Test: cover the heading — is the main idea of the slide still clear from the visual or a single sentence?]{.text-size-smaller .text-color-grey_olive}
-
-## Rule 3 — Interaction every 10–15 minutes
-
-::: {.panel-note}
-[Six interaction types]{.panel-title}
-
-| Type | When to use |
-|---|---|
-| Prediction question | Before revealing a result, graph, or test output |
-| Conceptual MCQ | To surface a common misconception; ideally with a polling tool |
-| Think–Pair–Share | After a new concept; 30 s thinking + 1–2 min pair discussion |
-| Silent write | Before discussion or reveal; each student writes one sentence |
-| Interpretation task | After showing a graph, model output, or table |
-| Data exploration | To open a topic — what patterns / hypotheses do you see? |
-:::
-
-::: {.panel-question}
-[Example — prediction question]{.panel-title}
-
-*How does the confidence interval change if we double the sample size?*
-
-**A)** Narrows   **B)** Stays the same   **C)** Widens
-:::
-
-## Rule 4 — Always frame biologically
-
-Every statistical method must be grounded in a concrete biological question.
-
-::: {.blockquote}
-**Four steps of the biological frame:**
-
-1. **Biological question** — "we want to find out whether…"
-2. **Data** — description, type, source
-3. **Statistical method** — what and why
-4. **Interpretation in biological context** — what the result says about the world, not about numbers
-:::
-
-[Never start with "today we'll learn the t-test". Always start with "we want to know whether…"]{.text-size-smaller .text-color-grey_olive}
-
-## Rule 5 — Alternate visual patterns (3-of-5 rule)
-
-**At most 3 of 5 consecutive slides may use a named component as the primary visual element.**
-
-A plain slide — a bold question on an empty background, a full-width graph, a single prominent number — carries more weight precisely because the surrounding slides are more structured.
-
-::: {.strip-orange}
-**3 of 5 — the law of slide visual contrast** · review the block before finalising
-:::
-
-[Components: `.card-*`, `.panel-*`, `.blockquote`, `.takeaway-strip`. If you reach 4+ in a row, convert one slide to a plain visual or an unframed question.]{.text-size-smaller .text-color-grey_olive}
-
-# Five Slide Families {.center}
-
-## Five slide families
-
-::: columns
-::: {.column width="62%"}
-
-| Family | Goal | Typical component |
-|---|---|---|
-| **Interaction** | Prediction / MCQ / TPS | bold question, `.panel-question` |
-| **Data reveal** | New data or output | full-width graph, plain slide |
-| **Interpretation** | Read the result | `.panel-result`, `.takeaway-strip` |
-| **Rule / warning** | Heuristic, error | `.card-warning`, `.panel-warning` |
-| **Transition / summary** | Reset, conclusion | `.blockquote` in two columns |
-
-:::
-::: {.column width="35%"}
-::: {.card-olive}
-[Variety of families]{.card-title}
-In one lecture, cycle through all five families.
-
-No block of 5+ slides should belong to only one family.
-:::
-:::
-:::
-
-[Students should be able to recognise the role of a slide before reading the text — from the colour key, layout, or position in the structure.]{.text-size-smaller .text-color-grey_olive}
-
-# Tools Overview {.center}
-
-## `.box-*` aliases — when to use what
-
-| Alias | Maps to | Weight | Colour | When to use |
-|-------|-----------|------|-------|------------|
-| `.box-question` | `.panel-question` | panel (lighter) | orange left border | MCQ, reflection question |
-| `.box-result` | `.panel-result` | panel (lighter) | indigo left border | main conclusion, analysis result |
-| `.box-data` | `.panel-data` | panel (lighter) | olive left border | dataset description, data context |
-| `.box-rule` | `.card-rule` | card (heavier) | amethyst top strip + shadow | rule, heuristic |
-| `.box-warning` | `.card-warning` | card (heavier) | red top strip + shadow | methodological warning |
-
-[Panel aliases (lighter): coloured left border, no shadow. Card aliases (heavier): coloured top strip + shadow. Inner heading: `[text]{.panel-title}` for panels · `[text]{.card-title}` for cards.]{.text-size-smaller .text-color-grey_olive}
-
-## `.box-question` — interaction, MCQ
-
-::: columns
-::: {.column width="55%"}
-::: {.box-question}
-[Question for reflection]{.panel-title}
-
-What percentage of penguin body-mass variability is explained by bill length?
-
-**A)** less than 30 % &nbsp;&nbsp; **B)** 30–60 % &nbsp;&nbsp; **C)** more than 60 %
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.box-question}
-[Question for reflection]{.panel-title}
-
-Question text + choices A / B / C.
-:::
+```{r}
+#| label: tabulka-na-uvod
+#| echo: false
+knitr::kable(
+  x = head(
+    x = data_tucnaci_uvod,
+    n = 4
+  ),
+  col.names = c(
+    "druh",
+    "délka křídla (mm)",
+    "hmotnost (g)"
+  )
+)
 ```
 
-[= `.panel-question` · orange left border · heading `{.panel-title}`]{.text-size-smaller .text-color-grey_olive}
-:::
 :::
 
-## `.box-result` — main result
+::: {.column .fragment width="55%"}
 
-::: columns
-::: {.column width="55%"}
-::: {.box-result}
-[What we see]{.panel-title}
-
-Each millimetre of bill length corresponds on average to **+8.7 g** body mass
-(95% CI: 6.2–11.2 g). The model explains 45 % of body-mass variability.
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.box-result}
-[What we see]{.panel-title}
-
-Main conclusion or analysis result.
-:::
+```{r}
+#| label: obrazek-na-uvod
+#| echo: false
+#| fig-alt: "Bodový graf délky křídla a tělesné hmotnosti tučňáků."
+plot(
+  x = data_tucnaci_uvod$flipper_length_mm,
+  y = data_tucnaci_uvod$body_mass_g,
+  xlab = "Délka křídla (mm)",
+  ylab = "Tělesná hmotnost (g)",
+  pch = 16,
+  col = "grey40",
+  cex = 0.8,
+  cex.lab = 1.2,
+  cex.axis = 1.0
+)
 ```
 
-[= `.panel-result` · indigo left border · heading `{.panel-title}` or `{.panel-lead}`]{.text-size-smaller .text-color-grey_olive}
 :::
-:::
-
-## `.box-data` — dataset description
-
-::: columns
-::: {.column width="55%"}
-::: {.box-data}
-[Palmer Penguins]{.panel-title}
-
-344 penguins from three islands · 3 species *(Adelie, Chinstrap, Gentoo)*
-
-Variables: bill length and depth (mm), flipper length (mm), body mass (g), sex, year
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.box-data}
-[Dataset name]{.panel-title}
-
-Brief description: number of
-observations, variables, source.
-:::
-```
-
-[= `.panel-data` · olive left border · heading `{.panel-title}`]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## `.box-warning` — methodological warning
-
-::: columns
-::: {.column width="55%"}
-::: {.box-warning}
-[Caution — correlation ≠ causation]{.card-title}
-
-A longer bill does not imply that *the bill causes* greater body mass — both traits
-may reflect overall body size.
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.box-warning}
-[Warning heading]{.card-title}
-
-Methodological error, misinterpretation,
-data limitation.
-:::
-```
-
-[= `.card-warning` · **card** · red top strip + shadow · heading `{.card-title}`]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## `.box-rule` — rule, heuristic
-
-::: columns
-::: {.column width="55%"}
-::: {.box-rule}
-[Mean or median?]{.card-title}
-
-If the data are symmetric → mean.
-
-If the data are skewed or contain outliers → median.
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.box-rule}
-[Rule heading]{.card-title}
-
-Condition → recommendation.
-Or a verbal heuristic.
-:::
-```
-
-[= `.card-rule` · **card** · amethyst top strip + shadow · heading `{.card-title}`]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## Combination: `.box-question` + `.takeaway-strip`
-
-::: columns
-::: {.column width="55%"}
-::: {.box-question}
-[Question for reflection]{.panel-title}
-
-Why does bill length differ between penguin species and within a single species?
-:::
-
-::: {.takeaway-strip}
-**Morphology as adaptation.** Bill length reflects life strategy — Gentoo penguins forage differently from Adelie.
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.box-question}
-[Question]{.panel-title}
-Question...
-:::
-
-::: {.takeaway-strip}
-**Conclusion.** Closing the conclusion.
-:::
-```
-
-[`.takeaway-strip` after `.box-question` closes a slide sequence. One slide = one question + one conclusion.]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## Fragment: incremental reveal of `.box-result`
-
-::: columns
-::: {.column width="55%"}
-Let's look at the linear model output.
-
-::: {.fragment}
-::: {.box-result}
-[Result]{.panel-title}
-
-Bill length coefficient: **+8.7 g/mm** (95% CI: 6.2–11.2 g).
-The effect is statistically and biologically significant.
-:::
-:::
-:::
-::: {.column width="42%"}
-```markdown
-Sentence before the pause.
-
-::: {.fragment}
-::: {.box-result}
-[Result]{.panel-title}
-Text that is revealed.
-:::
-:::
-```
-
-[`::: {.fragment}` wraps any `.box-*` block. Students see the sentence → click → result.]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## Tool: plain question without a frame {.center}
-
-<br>
-
-::: {.text-center .text-size-large .text-bold}
-How does the confidence interval change if we double the sample size?
-:::
-
-<br>
-
-::: {.text-center}
-**A)** Narrows &nbsp;&nbsp;&nbsp; **B)** Stays the same &nbsp;&nbsp;&nbsp; **C)** Widens
-:::
-
-<br>
-
-[Plain slide: bold question + choices without a frame. Maximum visual contrast against slides with `.box-*` components.]{.text-size-smaller .text-color-grey_olive}
-
-## Roughnotation — use sparingly
-
-Each millimetre of penguin bill length corresponds on average to
-[+8.7 g body mass]{.rn-underline-indigo} — the effect is
-[biologically significant]{.rn-box-orange}.
-
-<br>
-
-::: columns
-::: {.column width="48%"}
-```markdown
-[text]{.rn-underline-indigo}
-[text]{.rn-box-orange}
-[text]{.rn-circle-amethyst}
-[text]{.rn-bracket-indigo}
-```
-:::
-::: {.column width="48%"}
-```markdown
-[text]{.rn-highlight-orange}
-[text]{.rn-cross-graphite}
-```
-
-Colours: `indigo`, `orange`, `amethyst`,
-`olive`, `graphite`, `red`
-:::
-:::
-
-[**Sparingly:** max 1–2 effects per slide, 3–5 per lecture. Types: `underline`, `box`, `circle`, `bracket`, `highlight`, `cross`. Not as decoration — only for one key moment in a concept.]{.text-size-smaller .text-color-grey_olive}
-
-# Reference Slides: SCSS Components {.center}
-
-# Cards {.center}
-
-## Card: basic structure
-
-::: {.card-indigo}
-[Card heading]{.card-title}
-
-Card body — one or two short paragraphs. The font is intentionally smaller than the base
-slide size (0.82 em) to fit more content.
-
-- Cards can also contain a list
-- Each item on its own line
-:::
-
-[Syntax: `::: {.card-indigo}` + `[text]{.card-title}` for the coloured top strip — without the old `.slide-card` + variant combination.]{.text-size-smaller .text-color-grey_olive}
-
-## Card: .card-title
-
-::: columns
-::: {.column width="60%"}
-::: {.card-insight}
-[This is .card-title]{.card-title}
-
-`[text]{.card-title}` must be the **first thing** inside the card — it creates the coloured top strip.
-:::
-:::
-
-::: {.column width="38%"}
-```markdown
-::: {.card-insight}
-[Section name]{.card-title}
-
-Card body.
-:::
-```
-:::
-:::
-
-## Card: compact variant
-
-::: columns
-::: {.column width="48%"}
-::: {.card-orange}
-[Standard]{.card-title}
-
-`.card-orange` — padding `0.7rem 1rem`. Suitable for longer content.
-:::
-:::
-
-::: {.column width="48%"}
-::: {.card-orange .card-compact}
-[Compact]{.card-title}
-
-`.card-orange .card-compact` — reduced padding (`0.45rem 0.75rem`). For denser layouts.
-:::
-:::
-:::
-
-## Card: overview of variants
-
-::: columns
-::: {.column width="18%"}
-::: {.card-indigo}
-[indigo]{.card-title}
-`.card-indigo`
-:::
-:::
-::: {.column width="18%"}
-::: {.card-orange}
-[orange]{.card-title}
-`.card-orange`
-:::
-:::
-::: {.column width="18%"}
-::: {.card-amethyst}
-[amethyst]{.card-title}
-`.card-amethyst`
-:::
-:::
-::: {.column width="18%"}
-::: {.card-olive}
-[olive]{.card-title}
-`.card-olive`
-:::
-:::
-::: {.column width="18%"}
-::: {.card-red}
-[red]{.card-title}
-`.card-red`
-:::
-:::
-:::
-
-::: columns
-::: {.column width="16%"}
-::: {.card-question}
-[question]{.card-title}
-`.card-question`
-:::
-:::
-::: {.column width="16%"}
-::: {.card-insight}
-[insight]{.card-title}
-`.card-insight`
-:::
-:::
-::: {.column width="16%"}
-::: {.card-warning}
-[warning]{.card-title}
-`.card-warning`
-:::
-:::
-::: {.column width="16%"}
-::: {.card-data}
-[data]{.card-title}
-`.card-data`
-:::
-:::
-::: {.column width="16%"}
-::: {.card-result}
-[result]{.card-title}
-`.card-result`
-:::
-:::
-::: {.column width="16%"}
-::: {.card-rule}
-[rule]{.card-title}
-`.card-rule`
-:::
-:::
-:::
-
-[Semantic variants are aliases: `.card-question` = orange, `.card-insight` = `.card-result` = indigo, `.card-warning` = red, `.card-data` = olive, `.card-rule` = amethyst. Shorthand: `.box-question`, `.box-result`, `.box-data`, `.box-warning`, `.box-rule`.]{.text-size-smaller .text-color-grey_olive}
-
-# Panels {.center}
-
-## Panel: `.panel-result`
 
-::: columns
-::: {.column width="55%"}
-::: {.panel-result}
-[Key insight]{.panel-title}
+::::
 
-Purple left border. For the main message of a block — conclusion, analysis result, or key number.
+::: {.fragment .strip-olive .text-center}
+Měření v tabulce, obrázek a postup, který je spojuje.
 :::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.panel-result}
-[Heading]{.panel-title}
-Panel text.
-:::
-```
-
-[`.panel-title` is `display: block`; gives the heading h3 appearance without `###`.]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## Panel: `.panel-question`
-
-::: columns
-::: {.column width="55%"}
-::: {.panel-question}
-[Conclusion or option]{.panel-title}
-
-Orange left border. For conclusions, comparison results, or offering multiple answer choices.
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.panel-question}
-[Conclusion or option]{.panel-title}
-Panel text.
-:::
-```
-:::
-:::
-
-## Panel: `.panel-question` + `.panel-lead`
-
-::: columns
-::: {.column width="55%"}
-::: {.panel-question}
-[Computation result]{.panel-lead}
-
-Large highlighted result — replaces the old `.answer-title`. Use at most once per slide.
-:::
-:::
-::: {.column width="42%"}
-```markdown
-::: {.panel-question}
-[Computation result]{.panel-lead}
-
-Text below the result.
-:::
-```
-
-[`.panel-lead` is large and bold. Suitable for a key number or conclusion.]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## Panel: `.panel-note` and `.panel-warning`
-
-::: columns
-::: {.column width="48%"}
-::: {.panel-note}
-[Instructions or output]{.panel-title}
-
-Neutral olive border. For instructions, workflow steps, or model output.
-:::
-:::
-::: {.column width="48%"}
-::: {.panel-warning}
-[Caution!]{.panel-title}
-
-Red left border. For warnings, common errors, or deliberate alerts.
-:::
-:::
-:::
-
-## Panel: overview of colour variants
-
-::: columns
-::: {.column width="18%"}
-::: {.panel-indigo}
-[indigo]{.panel-title}
-`.panel-indigo`
-:::
-:::
-::: {.column width="18%"}
-::: {.panel-orange}
-[orange]{.panel-title}
-`.panel-orange`
-:::
-:::
-::: {.column width="18%"}
-::: {.panel-amethyst}
-[amethyst]{.panel-title}
-`.panel-amethyst`
-:::
-:::
-::: {.column width="18%"}
-::: {.panel-olive}
-[olive]{.panel-title}
-`.panel-olive`
-:::
-:::
-::: {.column width="18%"}
-::: {.panel-red}
-[red]{.panel-title}
-`.panel-red`
-:::
-:::
-:::
-
-[Semantic variants are aliases: `.panel-result` = indigo, `.panel-question` = orange, `.panel-warning` = red, `.panel-note` = amethyst, `.panel-data` = olive. Shorthand (`.box-*`) wraps the matching panel.]{.text-size-smaller .text-color-grey_olive}
-
-# Takeaway strip {.center}
-
-## Takeaway strip: standard
-
-Sentence that leads into the conclusion — contextual paragraph above the strip.
-
-::: {.takeaway-strip}
-**Main slide conclusion.** `.takeaway-strip` — indigo-to-orange gradient background,
-indigo left border. One per slide, placed at the bottom.
-:::
-
-[`::: {.takeaway-strip}` — the gradient is built in, no extra class needed.]{.text-size-smaller .text-color-grey_olive}
-
-## Takeaway strip: compact variant
-
-Sentence above the strip as usual.
-
-::: {.takeaway-strip}
-Main conclusion — standard strip.
-:::
-
-::: {.takeaway-strip .strip-compact}
-Supplementary conclusion — `.strip-compact` reduces `margin-top`. Useful for two conclusions together.
-:::
-
-## Strip: colour variants
-
-::: columns
-::: {.column width="18%"}
-::: {.strip-indigo}
-`.strip-indigo`
-:::
-:::
-::: {.column width="18%"}
-::: {.strip-orange}
-`.strip-orange`
-:::
-:::
-::: {.column width="18%"}
-::: {.strip-amethyst}
-`.strip-amethyst`
-:::
-:::
-::: {.column width="18%"}
-::: {.strip-olive}
-`.strip-olive`
-:::
-:::
-::: {.column width="18%"}
-::: {.strip-red}
-`.strip-red`
-:::
-:::
-:::
-
-# Blockquote {.center}
-
-## Blockquote div: `.blockquote`
-
-::: {.blockquote}
-**Definition or quotation.** `.blockquote` — light purple background, indigo left border (6px),
-rounded corners. Font 0.82 em.
-
-- Can contain a list
-- Each item on its own line
-:::
-
-[Use `::: {.blockquote}`, not Markdown `>`. The div variant gets correct styling;
-Markdown blockquote gets different styles from `presentation_theme.scss`.]{.text-size-smaller .text-color-grey_olive}
-
-# Slide backgrounds {.center}
-
-## Backgrounds: dark variants {.bg-indigo}
-
-This slide has the class `{.bg-indigo}`. Text and headings are automatically white.
-
-::: columns
-::: {.column width="48%"}
-Syntax — add the class to the slide heading:
-
-```markdown
-## Slide title {.bg-indigo}
-```
-:::
-::: {.column width="48%"}
-Available dark variants:
-
-- `{.bg-indigo}` — primary indigo
-- `{.bg-amethyst}` — lighter purple
-- `{.bg-olive}` — grey-green
-- `{.bg-red}` — red
-- `{.bg-graphite}` — dark grey
-:::
-:::
-
-## Backgrounds: light variants {.bg-parchment}
-
-This slide has the class `{.bg-parchment}`. Text is automatically graphite.
-
-::: columns
-::: {.column width="48%"}
-Available light variants:
-
-- `{.bg-orange}` — orange
-- `{.bg-parchment}` — cream
-- `{.bg-white}` — pure white
-:::
-::: {.column width="48%"}
-Text and heading colour adapts automatically — no need to add `.text-color-*`.
-:::
-:::
-
-# Inline highlights {.center}
-
-## Inline highlight: `.text-hgl-{color}`
-
-The model intercept is −153.4 and the length coefficient is
-[4.05 g/mm]{.text-hgl-indigo_velvet} — each millimetre of length corresponds on average
-to four grams of body mass.
-
-Caution — this procedure works [only when the normality assumption is met]{.text-hgl-orange}.
-
-[Syntax: `[text]{.text-hgl-indigo_velvet}` — coloured chip with contrasting text. Available colours: `indigo_velvet`, `orange`, `amethyst`, `grey_olive`, `graphite`, `white`, `light_gray`, `parchment`.]{.text-size-smaller .text-color-grey_olive}
-
-## Inline highlight: `.text-bg-{color}` and `.text-color-{color}`
-
-::: columns
-::: {.column width="48%"}
-[`.text-hgl-indigo_velvet`]{.text-hgl-indigo_velvet} — chip with contrasting text
-
-[`.text-bg-indigo_velvet`]{.text-bg-indigo_velvet} — chip without text colour change
-
-[`.text-color-indigo_velvet`]{.text-color-indigo_velvet} — text colour only
 
-[`.text-color-indigo_velvet .text-bold`]{.text-color-indigo_velvet .text-bold} — colour + bold
+::: {.notes}
+1-4 min. Začněte tabulkou a nechte studenty pojmenovat, co vidí. Odhalte graf jako cílový výstup, ale nevykládejte vztah mezi měřeními. Dvojice krátce odpoví: Co bychom potřebovali uchovat, kdyby příští týden přišla nová tabulka a chtěli jsme stejný obrázek? Odhalte závěrečný proužek.
 :::
-::: {.column width="48%"}
-```markdown
-[text]{.text-hgl-indigo_velvet}
-[text]{.text-bg-indigo_velvet}
-[text]{.text-color-indigo_velvet}
-[text]{.text-color-indigo_velvet .text-bold}
-```
-:::
-:::
-
-# Roughnotation {.center}
-
-## Roughnotation: shorthand syntax
-
-Shorthand `{.rn-{type}-{colour}}` expands via `rn-shorthand.lua`:
-
-::: columns
-::: {.column width="48%"}
-**Short form (new):**
-
-Each millimetre of length corresponds to approximately
-[four grams of body mass]{.rn-underline-indigo}.
-
-```markdown
-[text]{.rn-underline-indigo}
-```
-:::
-::: {.column width="48%"}
-**Long form (still functional):**
-
-```markdown
-[text]{.rn-fragment rn-type=underline
-  rn-color="#5D2890"}
-```
-:::
-:::
-
-[Available types: `underline`, `box`, `circle`, `highlight`, `cross`, `bracket`. Colours: `indigo`, `orange`, `amethyst`, `olive`, `graphite`, `red`.]{.text-size-smaller .text-color-grey_olive}
-
-## Roughnotation: `box`, `circle`, `bracket`
-
-::: columns
-::: {.column width="32%"}
-**box**
-
-**R² = [0.76]{.rn-box-indigo}**
-
-```markdown
-[0.76]{.rn-box-indigo}
-```
-:::
-::: {.column width="32%"}
-**circle**
-
-The relationship is [strong]{.rn-circle-orange}.
-
-```markdown
-[strong]{.rn-circle-orange}
-```
-:::
-::: {.column width="32%"}
-**bracket**
-
-**ŷ = β₀ + [β₁x]{.rn-bracket-indigo}**
-
-```markdown
-[β₁x]{.rn-bracket-indigo}
-```
-:::
-:::
-
-[Animation fires on fragment arrival. Do not use both colours on the same slide.]{.text-size-smaller .text-color-grey_olive}
-
-# Fragments and progressive disclosure {.center}
-
-## Fragment: `.fragment` block
-
-A sentence that is on the slide from the start.
-
-::: {.fragment}
-::: {.panel-result}
-[Conclusion arrives after pause]{.panel-title}
-
-This entire block appears as a single fragment — the student sees the sentence above
-and only after clicking does the panel with the conclusion reveal itself.
-:::
-:::
-
-[Syntax: `::: {.fragment}` wraps any block. Works with panels, blockquotes, strips, and cards.]{.text-size-smaller .text-color-grey_olive}
 
-## Fragment: `.incremental` list
+## Výsledky učení
 
-Which properties must a good correlation coefficient satisfy?
+Po absolvování této lekce budete schopni:
 
 ::: {.incremental}
-- It must be symmetric: correlation of X with Y = correlation of Y with X.
-- It must be dimensionless: independent of the scale of variables.
-- It must be in the interval −1 to +1.
-- +1 = perfect positive dependence, −1 = perfect negative dependence.
+- orientovat se v [okně RStudia]{.text-hgl-graphite}
+- [uložit a spustit]{.text-hgl-indigo_velvet} zapsané pokyny
+- otevřít tabulku CSV a vytvořit [obrázek]{.text-hgl-indigo_velvet}
+- po čistém spuštění R [obnovit výsledek]{.text-hgl-orange}
 :::
 
-[Each item appears on click.]{.text-size-smaller .text-color-grey_olive}
-
-# Typography {.center}
-
-## Typography: sizes
-
-::: columns
-::: {.column width="55%"}
-[`.text-size-heading` — 140 % of base]{.text-size-heading}
-
-[`.text-size-large` — 130 % of base]{.text-size-large}
-
-Normal text (100 %, base 30 px)
-
-[`.text-size-smaller` — 82 % of base]{.text-size-smaller}
-
-[`.text-size-tiny` — 65 % of base]{.text-size-tiny}
+::: {.notes}
+4-5 min. Jen přečtěte cíle. Technické pojmy jako objekt, funkce, relativní cesta a restart zde nepřidávejte.
 :::
-::: {.column width="42%"}
-```markdown
-[text]{.text-size-heading}
-[text]{.text-size-large}
-[text]{.text-size-smaller}
-[text]{.text-size-tiny}
+
+## Kdy je užitečnější uložit postup než opakovat klikání?
+
+:::: {.columns .align-top}
+
+::: {.column width="48%"}
+
+### Tabulkový procesor
+
+- rychlé otevření malé tabulky
+- pohodlná ruční kontrola
+- několik drobných změn
+
+:::
+
+::: {.column .fragment width="48%"}
+
+### Uložený textový postup
+
+- stejné kroky pro nová data
+- přesná kontrola provedených kroků
+- oprava jednoho kroku bez hádání
+
+:::
+
+::::
+
+::: {.fragment .takeaway-strip}
+Tabulkový procesor a R se mohou doplňovat. Uložený postup je výhodný hlavně tehdy, když potřebujeme práci přesně opakovat.
+:::
+
+::: {.notes}
+5-7 min. Nejprve komentujte levou stranu a zdůrazněte, že Excel není špatný nástroj. Odhalte uložený textový postup. Nechte hlasovat rukou: Která možnost se snáze přesně zopakuje za týden? Závěr odhalte po hlasování.
+:::
+
+## R provádí zapsané příkazy, RStudio poskytuje pracovní okno
+
+:::: {.layout-grid-2}
+
+::: {.panel-result}
+[R]{.panel-title}
+
+Programovací jazyk a program, který provádí přesné textové pokyny zvané **kód**.
+:::
+
+::: {.fragment .panel-note}
+[RStudio]{.panel-title}
+
+Okno, ve kterém kód píšeme, ukládáme, posíláme do R a kontrolujeme výsledky.
+:::
+
+::::
+
+::: {.notes}
+7-9 min. Vysvětlete nejprve R. Odhalte RStudio, přepněte do jeho živého okna a řekněte doslova: R je program, který příkaz provede. RStudio nám dává pracovní okno. Studenti zatím jen sledují.
+:::
+
+## Kde hledat zapsané příkazy, odpověď R, paměť a obrázek?
+
+```{r}
+#| label: cele-okno-rstudia
+#| echo: false
+#| out-width: "92%"
+include_local_figure("rstudio-overview.png")
 ```
 
-[`.text-size-body` = 100 % (explicit reset). Old `.text-larger`/`.text-smaller`/`.text-tiny` are removed.]{.text-size-smaller .text-color-grey_olive}
-:::
-:::
-
-## Typography: weight, alignment, font
-
-::: {.text-center}
-`.text-center` — horizontal centre
+::: {.fragment .text-center}
+**1 Source** · **2 Console** · **3 Environment** · **4 Files, Plots, Packages a Help**
 :::
 
-::: {.text-right}
-`.text-right` — right alignment
+::: {.footer}
+Snímek: [Rcragun, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:RStudio_-_Fresh_Install.png), CC BY-SA 4.0; číselné značky doplněny pro tuto lekci.
 :::
+
+::: {.notes}
+9-12 min. Před odhalením názvů studenti ve dvojici ukážou čtyři oblasti podle toho, co by v nich hledali. Po odhalení přepněte do živého RStudia a pojmenujte oblasti ve stejném pořadí.
+:::
+
+## Source uchovává skript, Console ukazuje odpověď R
+
+:::: {.columns .align-top}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: panel-source
+#| echo: false
+include_local_figure("rstudio-source.png")
+```
+
+**Source** je textový editor. Skript je uložený soubor s kódem a koncovkou `.R`.
+
+:::
+
+::: {.column .fragment width="50%"}
+
+```{r}
+#| label: panel-console
+#| echo: false
+include_local_figure("rstudio-console.png")
+```
+
+**Console** je přímé spojení s běžícím R. Značka `>` znamená, že R čeká na příkaz.
+
+:::
+
+::::
+
+::: {.fragment .strip-orange .text-center}
+Klikněte za `>`, napište `1 + 1` a stiskněte **Enter**.
+:::
+
+::: {.footer}
+Snímek: [Rcragun, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:RStudio_-_Fresh_Install.png), CC BY-SA 4.0; výřezy upraveny pro tuto lekci.
+:::
+
+::: {.notes}
+12-15 min. Ukažte blikající kurzor, čísla řádků a uložení v Source. Odhalte Console, ukažte značku větší než a napište 1 + 1. Odhalte pokyn; studenti příkaz zopakují a ukážou, kde je příkaz a kde výsledek.
+:::
+
+## Co ukazují dvě pravé oblasti RStudia?
+
+:::: {.columns .align-top}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: panel-environment
+#| echo: false
+include_local_figure("rstudio-environment.png")
+```
+
+**Environment** ukazuje pojmenované výsledky v paměti právě běžícího R.
+
+:::
+
+::: {.column .fragment width="50%"}
+
+```{r}
+#| label: panel-zalozky
+#| echo: false
+include_local_figure("rstudio-tabs.png")
+```
+
+**Files** ukazuje soubory, **Plots** obrázky a **Help** nápovědu. Záložky sdílejí jedno místo.
+
+:::
+
+::::
+
+::: {.notes}
+15-17 min. Vysvětlete Environment jako aktuální paměť a přepněte do živého RStudia. Odhalte druhou oblast; studenti kliknou na Files, Plots a Help a ukážou, kde by hledali soubor, obrázek a nápovědu. Neprobírejte typy objektů.
+:::
+
+## Jak se řádek ze skriptu dostane k R?
+
+| Source | Klávesa | Console |
+|---|---|---|
+| `2 + 3` | **Ctrl + Enter** | příkaz a výsledek |
 
 <br>
 
-[`.text-font-heading` — Source Sans 3, heading weight]{.text-font-heading}
+:::: {.layout-grid-2}
 
-[`.text-font-monospace` — JetBrains Mono]{.text-font-monospace}
+::: {.fragment .panel-note}
+[Ctrl + S]{.panel-title}
 
-[`.text-bold` — bold]{.text-bold}
-
-# Colour utilities {.center}
-
-## Colours: indigo_velvet and amethyst
-
-::: columns
-::: {.column width="48%"}
-::: {.bg-indigo_velvet style="padding:0.55rem 0.8rem;border-radius:10px;margin-bottom:0.5rem;"}
-[`.bg-indigo_velvet` — primary indigo]{.text-color-white}
-:::
-[`.text-color-indigo_velvet`]{.text-color-indigo_velvet}
-
-[`.text-hgl-indigo_velvet`]{.text-hgl-indigo_velvet}
-:::
-::: {.column width="48%"}
-::: {.bg-amethyst style="padding:0.55rem 0.8rem;border-radius:10px;margin-bottom:0.5rem;"}
-[`.bg-amethyst` — lighter purple]{.text-color-white}
-:::
-[`.text-color-amethyst`]{.text-color-amethyst}
-
-[`.text-hgl-amethyst`]{.text-hgl-amethyst}
-:::
+Uloží text skriptu do souboru.
 :::
 
-## Colours: orange and graphite
+::: {.fragment .panel-result}
+[Ctrl + Enter]{.panel-title}
 
-::: columns
-::: {.column width="48%"}
-::: {.bg-orange style="padding:0.55rem 0.8rem;border-radius:10px;margin-bottom:0.5rem;"}
-[`.bg-orange` — vivid orange]{.text-color-graphite}
+Pošle aktuální řádek nebo označenou část do R.
 :::
-[`.text-color-orange`]{.text-color-orange}
 
-[`.text-hgl-orange`]{.text-hgl-orange}
-:::
-::: {.column width="48%"}
-::: {.bg-graphite style="padding:0.55rem 0.8rem;border-radius:10px;margin-bottom:0.5rem;"}
-[`.bg-graphite` — dark base]{.text-color-white}
-:::
-[`.text-color-graphite`]{.text-color-graphite}
+::::
 
-[`.text-hgl-graphite`]{.text-hgl-graphite}
+::: {.notes}
+17-23 min. Projděte nejprve cestu v tabulce. Odhalte Ctrl + S, otevřete nový R Script, napište komentář a 2 + 3 a soubor uložte. Odhalte Ctrl + Enter a řádek proveďte. Studenti postup zopakují a sousedovi vysvětlí rozdíl obou zkratek.
+:::
+
+## Co znamená značka `+` na začátku řádku?
+
+::: {.text-center .text-size-large .text-font-monospace}
+`> (2 + 3`
+
+`+`
+:::
+
+::: {.text-center .text-size-large}
+Na co R čeká?
+:::
+
+::: {.fragment}
+::: {.panel-warning}
+[Příkaz není dokončený]{.panel-title}
+
+Chybí pravá závorka. Klávesa **Esc** vrátí běžnou značku `>`; opravený příkaz je `(2 + 3)`.
 :::
 :::
 
-## Colours: neutral palette tones
-
-::: columns
-::: {.column width="23%"}
-::: {.bg-parchment style="padding:0.5rem 0.7rem;border-radius:10px;border:1px solid #ccc;"}
-[`.bg-parchment`]{.text-color-graphite .text-size-smaller}
-:::
-[`.text-color-parchment`]{.text-color-parchment .text-size-smaller .bg-graphite style="padding:1px 4px;border-radius:3px;"}
-
-[`.text-hgl-parchment`]{.text-hgl-parchment .text-size-smaller}
-:::
-::: {.column width="23%"}
-::: {.bg-grey_olive style="padding:0.5rem 0.7rem;border-radius:10px;"}
-[`.bg-grey_olive`]{.text-color-white .text-size-smaller}
-:::
-[`.text-color-grey_olive`]{.text-color-grey_olive .text-size-smaller}
-
-[`.text-hgl-grey_olive`]{.text-hgl-grey_olive .text-size-smaller}
-:::
-::: {.column width="23%"}
-::: {.bg-light_gray style="padding:0.5rem 0.7rem;border-radius:10px;border:1px solid #ccc;"}
-[`.bg-light_gray`]{.text-color-graphite .text-size-smaller}
-:::
-[`.text-color-light_gray`]{.text-color-light_gray .text-size-smaller .bg-graphite style="padding:1px 4px;border-radius:3px;"}
-
-[`.text-hgl-light_gray`]{.text-hgl-light_gray .text-size-smaller}
-:::
-::: {.column width="23%"}
-::: {.bg-white style="padding:0.5rem 0.7rem;border-radius:10px;border:1px solid #ccc;"}
-[`.bg-white`]{.text-color-graphite .text-size-smaller}
-:::
-[`.text-color-white`]{.text-color-white .text-size-smaller .bg-graphite style="padding:1px 4px;border-radius:3px;"}
-
-[`.text-hgl-white`]{.text-hgl-white .text-size-smaller}
-:::
+::: {.notes}
+23-28 min. V Console zadejte neúplný příkaz, chvíli ponechte značku plus viditelnou a teprve po odpovědích vysvětlete čekání. Studenti chybu vytvoří, zruší Esc a spustí opravený výraz. Pokračujte, až všichni znovu vidí větší než.
 :::
 
-# Layout utilities {.center}
+## Projekt je jedna složka práce otevřená v RStudiu
 
-## Layout: `.columns.align-top`
+:::: {.columns .align-top}
 
-::: {.columns .align-top}
-::: {.column width="48%"}
-**Left column** starts at the top — without `.align-top` the content would be vertically centred.
+::: {.column width="50%"}
 
-::: {.card-indigo}
-Card in the left column.
+```text
+prvni-kroky-r/
+├── prvni-kroky-r.Rproj
+├── data/
+│   └── palmer_penguins.csv
+├── vystupy/
+└── prvni_kroky.R
+```
 
-Second paragraph inside the card — the left column is taller.
-:::
-:::
-::: {.column width="48%"}
-**Right column** is shorter.
-
-Without `.align-top` the right text would shift down to the centre of the column pair.
-:::
 :::
 
-[Syntax: `::: {.columns .align-top}` — add the class `.align-top` to `.columns`.]{.text-size-smaller .text-color-grey_olive}
+::: {.column width="50%"}
 
-## Layout: vertical offsets
-
-::: {.card-question}
-[Example: `.slide-margin-top-15`]{.kicker}
-
-This card would have `margin-top: 15%` if it had the class `.slide-margin-top-15`.
-Useful for vertically centring an isolated element on a slide.
+::: {.fragment}
+- `.Rproj` otevře složku jako projekt
+- `data` obsahuje vstupní tabulku
 :::
 
-::: {.takeaway-strip .strip-compact}
-`.slide-margin-top-15` → `margin-top: 15%` · `.slide-margin-top-25` → `margin-top: 25%` · `.center-vertical` → absolute centre
+::: {.fragment}
+- `vystupy` obsahuje uložené výsledky
+- `prvni_kroky.R` uchovává kód
 :::
 
-[For a group of related elements, prefer the normal-flow `.layout-stack.layout-center-y` utility shown below.]{.text-size-smaller .text-color-grey_olive}
+:::
 
-## Layout: `.layout-grid-2`
+::::
+
+::: {.fragment .strip-orange}
+Zkontrolujte stejnou strukturu v záložce Files a název projektu vpravo nahoře.
+:::
+
+::: {.notes}
+28-42 min. Nechte viditelný strom složek a po dvojicích odhalte význam jeho položek. Vytvořte projekt prvni-kroky-r, složky data a vystupy a uložte rozpracovaný skript jako prvni_kroky.R. Odhalte kontrolní pokyn; studenti postup opakují. Soubor CSV zkopírujte do data, ale relativní cestu zatím nevysvětlujte.
+:::
+
+## Kdy se pojmenovaný výsledek objeví v Environment?
+
+:::: {.columns}
+
+::: {.column width="52%"}
+
+```{r}
+#| label: prvni-objekt-na-snimku
+#| echo: true
+#| eval: false
+# Uložíme délku lekce v minutách
+delka_lekce_min <- 90
+```
+
+:::
+
+::: {.column width="44%"}
+
+::: {.text-center .text-size-large}
+Stačí řádek napsat?
+:::
+
+::: {.fragment}
+::: {.panel-result}
+[Objekt vznikne až po spuštění]{.panel-title}
+
+Po **Ctrl + Enter** se `delka_lekce_min` objeví v Environment.
+:::
+:::
+
+:::
+
+::::
+
+::: {.notes}
+42-47 min. Napište řádek, ale nespouštějte jej. Studenti předpoví stav Environment. Po spuštění vyslovte poprvé pojem objekt. Pak změňte 90 na 80 bez spuštění a nechte studenty vysvětlit, proč se paměť nezměnila.
+:::
+
+## Co změní nastavení `digits`?
+
+:::: {.columns}
+
+::: {.column width="52%"}
+
+::: {.fragment}
+
+```{r}
+#| label: funkce-round-na-snimku
+#| echo: true
+#| eval: false
+round(
+  x = 3.14159,
+  digits = 2
+)
+```
+
+:::
+
+::: {.fragment .text-center}
+Očekávaný výsledek: **`r round(x = 3.14159, digits = 2)`**
+:::
+
+:::
+
+::: {.column width="44%"}
+
+- `round` je **funkce**, která číslo zaokrouhlí
+- `x` je pojmenovaný **argument**: zaokrouhlované číslo
+- `digits` je pojmenovaný **argument**: počet desetinných míst
+
+:::
+
+::::
+
+::: {.fragment .strip-orange}
+Změňte `digits` a spusťte příkaz. Do Console napište `?round`; v Help najděte části Usage a Arguments.
+:::
+
+::: {.notes}
+47-53 min. Vysvětlete viditelné významy funkce a argumentů. Odhalte konkrétní příkaz a nechte studenty odhadnout výsledek. Odhalte výsledek, v živém RStudiu změňte digits a otevřete ?round. Kontrola: jiný výsledek a otevřená stránka Help.
+:::
+
+## Odkud se v R berou další možnosti?
+
+::: {.fragment}
+**Balíček** je nainstalovaný doplněk, který může přidat funkce, dokumentaci nebo data.
+:::
 
 :::: {.layout-grid-2}
-::: {.panel-result}
-[Left result]{.panel-title}
 
-Two equal-width elements form one comparison.
+::: {.fragment .panel-note}
+[Instalace v Console]{.panel-title}
+
+Obvykle ji provedeme pouze jednou.
+
+`install.packages(pkgs = "palmerpenguins")`
 :::
 
-::: {.panel-question}
-[Right question]{.panel-title}
+::: {.fragment .panel-result}
+[Použití konkrétního obsahu]{.panel-title}
 
-The shared gap keeps the pair readable.
+Dvojitá dvojtečka vybírá obsah z balíčku.
+
+`names(x = palmerpenguins::penguins)`
 :::
+
 ::::
 
-::: {.takeaway-strip}
-Use `::: {.layout-grid-2}` for a comparison or prompt pair—not merely to decorate an ordinary list.
+::: {.strip-orange}
+Pokud instalace do pěti minut nefunguje, pokračujeme s připraveným CSV. Další kroky balíček nepotřebují.
 :::
 
-## Layout: vertical stack
-
-:::: {.layout-stack}
-::: {.box-question}
-First related teaching element.
+::: {.notes}
+53-63 min. Záložní cesta s pětiminutovým limitem je viditelná od začátku. Nechte nejprve zaznít návrhy, odkud R získává další možnosti, a odhalte definici balíčku. Odhalte instalaci a příkaz zadejte živě pouze do Console. Odhalte použití obsahu a ukažte dvojitou dvojtečku. Studenti opakují, pokud instalace funguje. Po pěti minutách ukončete řešení instalace a pokračujte se souborem v data. Nepoužívejte library().
 :::
 
-::: {.box-result}
-Second element with consistent breathing room.
+## Jeden řádek patří jednomu tučňákovi
+
+```{r}
+#| label: tabulka-jeden-tucnak
+#| include: false
+data_tucnaci_pribeh <-
+  read.csv(
+    file = here::here("data", "palmer_penguins.csv")
+  )
+```
+
+```{r}
+#| label: zobrazit-tabulku-jeden-tucnak
+#| echo: false
+knitr::kable(
+  x = head(
+    x = data_tucnaci_pribeh,
+    n = 5
+  ),
+  col.names = c(
+    "druh",
+    "délka křídla (mm)",
+    "tělesná hmotnost (g)"
+  )
+)
+```
+
+::: {.fragment .panel-data}
+První řádek popisuje jednoho tučňáka druhu **`r data_tucnaci_pribeh[["species"]][[1]]`**: délka křídla **`r data_tucnaci_pribeh[["flipper_length_mm"]][[1]]` mm**, tělesná hmotnost **`r data_tucnaci_pribeh[["body_mass_g"]][[1]]` g**.
 :::
 
-::: {.takeaway-strip}
-The default gap is `1.4rem`; override `--layout-gap` on the wrapper only when the rendered composition needs it.
+::: {.footer}
+Data: Gorman, Williams a Fraser; [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/), CC0.
 :::
+
+::: {.notes}
+63-66 min. Zopakujte úvodní otázku doslova: Jak vytvoříme obrázek z měření tučňáků a uchováme jeho postup? Studenti nejprve ukážou jeden řádek a tři zaznamenané údaje. Odhalte slovní popis prvního řádku. Nezavádějte typy proměnných ani popisné statistiky.
+:::
+
+## Cesta k datům začíná ve složce projektu
+
+:::: {.columns .align-top}
+
+::: {.column width="42%"}
+
+```text
+prvni-kroky-r/
+└── data/
+    └── palmer_penguins.csv
+```
+
+`data/palmer_penguins.csv` popisuje cestu od hlavní složky projektu.
+
+:::
+
+::: {.column .fragment width="58%"}
+
+```{r}
+#| label: nacist-csv-na-snimku
+#| echo: true
+#| eval: false
+# Načteme CSV ze složky data
+data_tucnaci <-
+  read.csv(
+    file = "data/palmer_penguins.csv"
+  )
+```
+
+:::
+
 ::::
 
-## Layout: centred stack
-
-:::: {.layout-stack .layout-center-y}
-::: {.box-question .text-center}
-Which observation would change your conclusion?
+::: {.fragment .strip-indigo}
+Po spuštění se `data_tucnaci` objeví v Environment.
 :::
 
+::: {.notes}
+66-71 min. Vysvětlete cestu pomocí známé složky. Odhalte příkaz, napište jej do Source a spusťte. Studenti zopakují postup. Odhalte očekávané umístění objektu a nechte je zkontrolovat Environment. V jejich skriptu nesmí být adresa začínající uživatelskou složkou konkrétního počítače.
+:::
+
+## Jak poznáme, že jsme otevřeli správnou tabulku?
+
+```{r}
+#| label: data-pro-kontrolu
+#| include: false
+data_tucnaci_kontrola <-
+  read.csv(
+    file = here::here("data", "palmer_penguins.csv")
+  )
+```
+
+:::: {.columns .align-top}
+
+::: {.column width="48%"}
+
+1. Jak vypadají první řádky?
+2. Jak se jmenují sloupce?
+3. Kolik řádků tabulka obsahuje?
+
+:::
+
+::: {.column .fragment width="48%"}
+
+```{r}
+#| label: kontrola-dat-na-snimku
+#| echo: true
+#| eval: false
+head(
+  x = data_tucnaci,
+  n = 6
+)
+names(x = data_tucnaci)
+nrow(x = data_tucnaci)
+```
+
+:::
+
+::::
+
+::: {.fragment .strip-olive}
+Očekáváme sloupce **`r paste(names(data_tucnaci_kontrola), collapse = ", ")`** a **`r nrow(data_tucnaci_kontrola)` řádků**.
+:::
+
+::: {.notes}
+71-75 min. Nechte nejprve zaznít tři otázky, teprve potom ukažte funkce. Studenti příkazy přidají do Source a porovnají výstup s očekáváním. Neotvírejte summary(), missing values ani typy dat.
+:::
+
+## Jeden tučňák vytvoří jeden bod
+
+```{r}
+#| label: data-pro-prvni-bod
+#| include: false
+data_tucnaci_graf <-
+  read.csv(
+    file = here::here("data", "palmer_penguins.csv")
+  )
+```
+
+:::: {.columns .align-top}
+
+::: {.column width="42%"}
+
+::: {.panel-data}
+[První řádek]{.panel-title}
+
+Vodorovně: **`r data_tucnaci_graf[["flipper_length_mm"]][[1]]` mm**
+
+Svisle: **`r data_tucnaci_graf[["body_mass_g"]][[1]]` g**
+:::
+
+Jeden řádek dodá bodu dvě souřadnice.
+
+::: {.fragment}
+Znak `$` vybírá pojmenovaný sloupec tabulky.
+
+```{r}
+#| label: kod-pro-prvni-graf
+#| echo: true
+#| eval: false
+plot(
+  x = data_tucnaci$flipper_length_mm,
+  y = data_tucnaci$body_mass_g
+)
+```
+
+`x` určuje vodorovnou a `y` svislou osu.
+:::
+
+:::
+
+::: {.column width="58%"}
+
+```{r}
+#| label: zvyraznit-prvni-bod
+#| echo: false
+#| fig-alt: "Bodový graf délky křídla a tělesné hmotnosti tučňáků se zvýrazněným bodem prvního tučňáka."
+plot(
+  x = data_tucnaci_graf$flipper_length_mm,
+  y = data_tucnaci_graf$body_mass_g,
+  xlab = "Délka křídla (mm)",
+  ylab = "Tělesná hmotnost (g)",
+  pch = 16,
+  col = "grey70",
+  cex = 0.8,
+  cex.lab = 1.2,
+  cex.axis = 1.0
+)
+points(
+  x = data_tucnaci_graf[["flipper_length_mm"]][[1]],
+  y = data_tucnaci_graf[["body_mass_g"]][[1]],
+  pch = 16,
+  col = biostat_cols[["orange"]],
+  cex = 1.5
+)
+```
+
+:::
+
+::::
+
+::: {.strip-orange}
+Najděte přibližnou polohu prvního tučňáka. Obrazec zatím statisticky nevykládáme.
+:::
+
+::: {.notes}
+75-80 min. Studenti nejprve přibližně najdou zvýrazněný bod podle dvou hodnot. Potom odhalte význam znaku $ a argumentů x a y. V živém RStudiu napište základní plot() přímo s oběma sloupci; studenti postup zopakují. Až poté vyslovte název bodový graf, anglicky scatter plot.
+:::
+
+## Plots ukazuje obrázek, PNG zůstává jako soubor
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+```{r}
+#| label: vysledny-bodovy-graf
+#| echo: false
+#| fig-alt: "Výsledný bodový graf délky křídla a tělesné hmotnosti tučňáků."
+plot(
+  x = data_tucnaci_graf$flipper_length_mm,
+  y = data_tucnaci_graf$body_mass_g,
+  xlab = "Délka křídla (mm)",
+  ylab = "Tělesná hmotnost (g)",
+  pch = 16,
+  col = "grey40",
+  cex = 0.8,
+  cex.lab = 1.2,
+  cex.axis = 1.0
+)
+```
+
+:::
+
+::: {.column width="41%"}
+
+::: {.incremental}
+1. `png()` otevře cílový soubor.
+2. Stejný `plot()` do něj nakreslí obrázek.
+3. `dev.off()` soubor dokončí.
+:::
+
+::: {.fragment .panel-result}
+[Soubor na disku]{.panel-title}
+
+`vystupy/tucnaci.png`
+:::
+
+:::
+
+::::
+
+::: {.notes}
+80-84 min. Nechte graf viditelný a po jednom odhalte tři kroky ukládání. V Source zkopírujte stejný příkaz plot() mezi png(filename = "vystupy/tucnaci.png") a dev.off(). Studenti postup zopakují. Odhalte cílový soubor, přepněte do Files a otevřete vystupy. Kontrolou je existující PNG, nikoli interpretace vztahu.
+:::
+
+## Co se při restartu R změní?
+
+**Restart R ukončí právě běžící R uvnitř RStudia a spustí čistý běh. RStudio zůstane otevřené.**
+
+::: {.fragment}
+| Co sledujeme | Zůstane, nebo zmizí? |
+|---|---|
+| uložený skript `prvni_kroky.R` | ? |
+| vstupní CSV ve složce `data` | ? |
+| PNG ve složce `vystupy` | ? |
+| objekty v Environment | ? |
+:::
+
+::: {.fragment}
+::: {.takeaway-strip}
+Soubory zůstanou na disku. Environment se vyčistí. Uložený skript může potřebné objekty a výstup obnovit.
+:::
+:::
+
+::: {.notes}
+84-88 min. Přečtěte definici a nechte studenty vlastními slovy popsat, co restart neudělá. Odhalte tabulku a vyžádejte předpověď čtyř položek. Uložte skript, zvolte Session, Restart R a porovnejte stav. Odhalte závěr a tlačítkem Source spusťte celý skript od začátku. Studenti provedou stejný test.
+:::
+
+## Co už umíme
+
+::: {.incremental}
+- [R]{.text-hgl-indigo_velvet} provádí příkazy; RStudio poskytuje pracovní okno.
+- [Source]{.text-hgl-indigo_velvet} uchovává skript; Console komunikuje s běžícím R.
+- [Environment]{.text-hgl-orange} je dočasná paměť; Files ukazuje soubory na disku.
+- Plots ukazuje obrázek; [PNG]{.text-hgl-indigo_velvet} je uložený soubor.
+- Uložený skript obnovil výsledek z [uloženého CSV]{.text-hgl-graphite}.
+:::
+
+::: {.notes}
+88-89 min. Shrnutí opřete o to, co studenti právě viděli po restartu a spuštění celého skriptu. Nezavádějte formální definici reprodukovatelnosti.
+:::
+
+## Co byste poslali spolužákovi, aby výsledek obnovil?
+
+:::: {.columns .align-top}
+
+::: {.column width="31%"}
+::: {.panel-note .text-center}
+[A]{.panel-title}
+
+Pouze obrázek `tucnaci.png`
+:::
+:::
+
+::: {.column width="31%"}
+::: {.panel-note .text-center}
+[B]{.panel-title}
+
+Pouze skript `prvni_kroky.R`
+:::
+:::
+
+::: {.column width="31%"}
+::: {.panel-note .text-center}
+[C]{.panel-title}
+
+Celou složku projektu se skriptem a vstupními daty
+:::
+:::
+
+::::
+
+::: {.fragment}
 ::: {.takeaway-strip .text-center}
-`.layout-center-y` centres the short stack in normal flow without transforming its children.
+**C.** Obrázek ukazuje výsledek. Projekt se skriptem a daty navíc ukazuje, jak výsledek vznikl.
 :::
-::::
+:::
 
+::: {.notes}
+89-90 min. Studenti vyberou odpověď a jednou větou ji obhájí sousedovi. Výstupní kontrola: každý ukáže skript, CSV, objekt v Environment, graf v Plots a PNG v Files.
+:::

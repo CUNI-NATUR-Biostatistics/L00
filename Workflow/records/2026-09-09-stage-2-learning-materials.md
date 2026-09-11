@@ -15,7 +15,7 @@
 - Stages 0-1 PR merged: [x]
 - Branch created from updated default branch: [x]
 - `git status --short` reviewed before editing: [x]
-- Written-materials PR: Not opened
+- Written-materials PR: #2, merged 2026-09-11
 
 ## Intended relationship to the in-person lesson
 
@@ -191,5 +191,5 @@ The superseded first draft rendered to HTML and a 12-page PDF, passed a clean te
 - [x] Revision-2 human story-map approval is `approved` and recorded
 - [x] Final written-material human approval is `approved` and recorded
 - [x] Diff contains only Stages 2-3 sources, records, media, and corresponding outputs
-- [ ] Written-materials PR ready to merge
-- Notes: The first full draft is superseded. The revision-2 story map incorporates the human review findings and the re-reviewed SSoQE panel-by-panel teaching sequence. Ondřej Mottl approved revision 2 on 2026-09-09, requested the additional leakage audit on 2026-09-10, and approved the resulting written materials on 2026-09-10. The correction pass, final rendering, offline route test, independent review rechecks, and final human review are complete. Commit, push, pull-request creation, and merge remain separate authorization boundaries.
+- [x] Written-materials PR merged
+- Notes: The first full draft is superseded. The revision-2 story map incorporates the human review findings and the re-reviewed SSoQE panel-by-panel teaching sequence. Ondřej Mottl approved revision 2 on 2026-09-09, requested the additional leakage audit on 2026-09-10, and approved the resulting written materials on 2026-09-10. The correction pass, final rendering, offline route test, independent review rechecks, and final human review are complete. Commit, push, pull-request creation, and merge were subsequently authorized as separate operations; PR #2 merged on 2026-09-11.
