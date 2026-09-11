@@ -22,3 +22,17 @@ resources:
   extras:
     - label: "Licence materiálů a kódu"
       path: LICENSE.md
+    - label: "Původ a licence snímků RStudia"
+      path: Learning_materials/figures/README.md
+    - label: "RStudio - celé okno"
+      path: Learning_materials/figures/rstudio-fresh-install.png
+    - label: "RStudio - očíslovaný přehled panelů"
+      path: Learning_materials/figures/rstudio-overview.svg
+    - label: "RStudio - Source"
+      path: Learning_materials/figures/rstudio-source.svg
+    - label: "RStudio - Console"
+      path: Learning_materials/figures/rstudio-console.svg
+    - label: "RStudio - Environment"
+      path: Learning_materials/figures/rstudio-environment.svg
+    - label: "RStudio - Files, Plots, Packages a Help"
+      path: Learning_materials/figures/rstudio-tabs.svg

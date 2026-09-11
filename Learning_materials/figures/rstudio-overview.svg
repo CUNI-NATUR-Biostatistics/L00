@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1850" height="1051" viewBox="0 0 1850 1051">
+  <image href="rstudio-fresh-install.png" x="0" y="0" width="1850" height="1051" />
+  <g fill="#5D2890" stroke="#FFFFFF" stroke-width="8">
+    <circle cx="500" cy="280" r="48" />
+    <circle cx="500" cy="780" r="48" />
+    <circle cx="1425" cy="240" r="48" />
+    <circle cx="1425" cy="750" r="48" />
+  </g>
+  <g fill="#FFFFFF" font-family="Arial, sans-serif" font-size="58" font-weight="700" text-anchor="middle" dominant-baseline="central">
+    <text x="500" y="280">1</text>
+    <text x="500" y="780">2</text>
+    <text x="1425" y="240">3</text>
+    <text x="1425" y="750">4</text>
+  </g>
+</svg>
