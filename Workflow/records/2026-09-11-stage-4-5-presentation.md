@@ -15,7 +15,7 @@
 - Stages 2-3 PR merged: [x]
 - Branch created from updated default branch: [x]
 - `git status --short` reviewed before editing: [x]
-- Presentation PR: Not opened
+- Presentation PR: #3, merged 2026-09-11
 
 ## Intended classroom role
 
@@ -161,5 +161,5 @@ The 22 headings were read without bodies. The sequence begins with the real task
 - [x] Human story-map approval is `approved` and recorded
 - [x] Diff is limited to presentation source, attributed media, rendered outputs, workflow status updates, and the required `renv.lock` cleanup
 - [x] Revised deck approved as usable for teaching and colleague feedback
-- [ ] Presentation PR ready to merge
-- Notes: Ondřej Mottl explicitly approved the presentation story map and knowledge-state ledger on 2026-09-11. The 22-slide deck was built, rendered, checked across every final slide canvas and the meaningful initial/intermediate fragment states, and independently reviewed. Human feedback then prompted a purposeful fragment-pacing pass without changing the approved sequence or scope. Slide 13 defines `round`, `x`, and `digits` before prediction; slide 18 explains `$` and the `x`/`y` axis roles before students reproduce `plot()`; slide 14 keeps the installation fallback visible before the technology-dependent action. HTML and PDF render successfully, `Presentation/presentation.html` matches `docs/index.html`, and a fresh `renv::status()` reports no issues. The revised deck is approved as usable. Feedback from other lecturers will be requested using a bundle that contains both the presentation and the completed classroom R script, so that they can review the intended slide-to-RStudio rhythm rather than the deck in isolation. No commit, push, or PR is authorized yet.
+- [x] Presentation PR merged
+- Notes: Ondřej Mottl explicitly approved the presentation story map and knowledge-state ledger on 2026-09-11. The 22-slide deck was built, rendered, checked across every final slide canvas and the meaningful initial/intermediate fragment states, and independently reviewed. Human feedback then prompted a purposeful fragment-pacing pass without changing the approved sequence or scope. Slide 13 defines `round`, `x`, and `digits` before prediction; slide 18 explains `$` and the `x`/`y` axis roles before students reproduce `plot()`; slide 14 keeps the installation fallback visible before the technology-dependent action. HTML and PDF render successfully, `Presentation/presentation.html` matches `docs/index.html`, and a fresh `renv::status()` reports no issues. The revised deck is approved as usable. Feedback from other lecturers will be requested using a bundle that contains both the presentation and the completed classroom R script, so that they can review the intended slide-to-RStudio rhythm rather than the deck in isolation. Commit, push, PR creation, and merge were subsequently authorized as separate operations; PR #3 merged on 2026-09-11.
