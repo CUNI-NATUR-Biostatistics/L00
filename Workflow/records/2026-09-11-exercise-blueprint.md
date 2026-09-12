@@ -9,7 +9,7 @@
 - Branch: `lesson/l00-exercises`
 - Base: `main` at merge commit `a0b3a33` (`Build L00 live RStudio code-along presentation (#3)`)
 - Presentation dependency: PR #3 merged on 2026-09-11
-- Status: blueprint complete; exercise drafting and validation in progress
+- Status: exercise complete, validated, and approved for pull-request review
 
 ## Intended use
 
