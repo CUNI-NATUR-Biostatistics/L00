@@ -6,16 +6,16 @@
 - Date: 2026-09-12
 - Author: Codex with course-owner direction
 - Reviewer: pending final human release review
-- Status: in progress; local release package and publication infrastructure validated, preview and room-route checks pending
+- Status: in progress; local release package and publication infrastructure validated, preview screenshot correction awaiting redeployment, and room-route checks pending
 
 ## Git checkpoint
 
 - Stages 4-5 presentation PR merged: [x], PR #3 merged 2026-09-11
 - Exercise PR merged, or exercise explicitly omitted from this release: [x], PR #4 merged 2026-09-12
-- Default branch updated locally: [x], `main` and `origin/main` at `222ca71`
+- Default branch updated locally: [x], `origin/main` at merged release-preparation commit `f14117e`
 - `git status --short` reviewed before release work: [x], clean
 - Release validation is read-only: [x] for the audit; this record and refreshed generated outputs are isolated on the release branch
-- Release-fix branch / PR if source changes were required: `release/l00-v0.1.0` / pending
+- Release-fix branch / PR if source changes were required: `fix/l00-embedded-rstudio-images` / pending
 
 ## Inspiration check
 
@@ -67,10 +67,11 @@ No workflow records, answer keys, private notes, repository metadata, or unliste
 - Fresh R process activated `D:/GITHUB/CUNI-NATUR-Biostatistics/L00` and `renv::status()` reported no issues.
 - `Rscript -e "source('R/render_all.R')"` completed on 2026-09-12 and regenerated both HTML/PDF outputs through the supported wrapper.
 - Rendered presentation: 22 slides. The HTML is unchanged; the PDF was regenerated with the same byte size. The established Stage 5 whole-deck and fragment-state visual review remains applicable because presentation source and rendered HTML did not change.
-- Rendered learning materials: HTML and PDF completed. The only readable HTML change is the generated `date-modified` value advancing from 10 to 11 September 2026; the source content is unchanged.
+- Rendered learning materials: HTML and PDF completed after the screenshot correction. The five HTML screenshot blocks now use the same SVG files as the PDF. Each SVG embeds the exact original PNG bytes, and the standalone HTML contains five embedded SVG data resources, one for each RStudio view, with zero references to `figures/rstudio-fresh-install.png`.
 - Non-blocking render warnings: Windows could not apply the configured `C.UTF-8` locale; the shared presentation SCSS reported four variables before declaration. Neither warning prevented output generation.
-- Canonical release-packaging dry run: passed for `L00-v0.1.0-20260928`; the generated public manifest contains 16 checksums and the expected `code/cviceni.R` and `data/palmer_penguins.csv` routes.
-- Temporary validation bundles were removed after inspection.
+- Canonical release-packaging dry run: passed again after the screenshot correction for `L00-v0.1.0-20260928`; the generated public manifest contains 16 checksums and the expected `code/cviceni.R` and `data/palmer_penguins.csv` routes.
+- Direct browser rendering of the self-contained `rstudio-overview.svg` confirmed that the embedded screenshot and numbered panel overlays remain visible. The other four SVGs have the same embedded-image structure and passed the source/reference checks.
+- Temporary validation bundles and browser captures were removed after inspection.
 
 ## Delivery-route validation
 
@@ -86,7 +87,7 @@ No workflow records, answer keys, private notes, repository metadata, or unliste
 - Pages configuration: enabled with `build_type: workflow`, public Pages output, and enforced HTTPS. Earlier preview runs failed at `actions/configure-pages` because Pages had not yet been enabled; that configuration blocker is resolved.
 - Environment protection: the `github-pages` environment uses custom deployment policies with exactly two rules: branch `main` and tag pattern `L00-v*`.
 - Preview deployment: manual `Publish preview` run [34712220880](https://github.com/CUNI-NATUR-Biostatistics/L00/actions/runs/34712220880) succeeded from `main` at `222ca71`. Both intended HTML routes return HTTP 200.
-- Preview inspection: the learning-material page and presentation title slide were inspected from the deployed Pages site at desktop width; the learning-material page was also inspected at a narrow 500-pixel viewport. Typography, layout, table treatment, presentation controls, slide count, and responsive wrapping are readable and consistent with the approved local outputs.
+- Preview inspection: the learning-material page and presentation title slide were inspected from the deployed Pages site at desktop width; the learning-material page was also inspected at a narrow 500-pixel viewport. Typography, layout, table treatment, presentation controls, slide count, and responsive wrapping are readable. A later inspection deeper in the learning page found that five inline HTML SVG blocks retained relative links to `figures/rstudio-fresh-install.png`, which the preview workflow does not publish. The local correction removes those paths and embeds the screenshot bytes inside the five SVG files; deployed verification remains pending the fix merge and automatic preview run.
 - Student download route: preview intentionally publishes only the two HTML review routes, so `/preview/code/` and `/preview/data/` return 404. The canonical bundle maps the script and CSV to `code/cviceni.R` and `data/palmer_penguins.csv`; real browser downloads from `/current/` remain pending the stable tag.
 - Lab-account route: pending representative-room test of CRAN access, writable user library, project creation, downloads, relative paths, output creation, restart, and full rerun.
 - Failure routes: the committed CSV makes the core lesson independent of package installation after download; the clean-session solution and failed-install/no-network classroom route are documented and validated in the exercise record. A room-account rehearsal remains pending.
