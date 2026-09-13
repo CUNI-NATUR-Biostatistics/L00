@@ -5,8 +5,8 @@
 - Week: L00
 - Date: 2026-09-12
 - Author: Codex with course-owner direction
-- Reviewer: pending final human release review
-- Status: in progress; local release package and publication infrastructure validated, preview screenshot correction awaiting redeployment, and room-route checks pending
+- Reviewer: Ondřej Mottl, final release approval and lab-rehearsal waiver recorded 2026-09-13
+- Status: ready for authorized release; stable-route checks remain post-release validation
 
 ## Git checkpoint
 
@@ -15,7 +15,7 @@
 - Default branch updated locally: [x], `origin/main` at merged release-preparation commit `f14117e`
 - `git status --short` reviewed before release work: [x], clean
 - Release validation is read-only: [x] for the audit; this record and refreshed generated outputs are isolated on the release branch
-- Release-fix branch / PR if source changes were required: `fix/l00-embedded-rstudio-images` / pending
+- Release-fix branch / PR if source changes were required: `fix/l00-embedded-rstudio-images` / PR #6 merged 2026-09-13
 
 ## Inspiration check
 
@@ -44,7 +44,7 @@
 
 ## Public allowlist
 
-`website-release.yml` validates for `L00`, academic year `2026-27`, and the target tag `L00-v0.1.0-20260928`. The canonical packager produced one ZIP and a manifest with 16 checksummed files:
+`website-release.yml` validates for `L00`, academic year `2026-27`, and the target tag `L00-v0.1.0-20260913`. The canonical packager produced one ZIP and a manifest with 16 checksummed files:
 
 - learning: HTML, PDF, and `Learning_materials/skripta.qmd`;
 - presentation: HTML, PDF, and `Presentation/presentation.qmd`;
@@ -69,7 +69,7 @@ No workflow records, answer keys, private notes, repository metadata, or unliste
 - Rendered presentation: 22 slides. The HTML is unchanged; the PDF was regenerated with the same byte size. The established Stage 5 whole-deck and fragment-state visual review remains applicable because presentation source and rendered HTML did not change.
 - Rendered learning materials: HTML and PDF completed after the screenshot correction. The five HTML screenshot blocks now use the same SVG files as the PDF. Each SVG embeds the exact original PNG bytes, and the standalone HTML contains five embedded SVG data resources, one for each RStudio view, with zero references to `figures/rstudio-fresh-install.png`.
 - Non-blocking render warnings: Windows could not apply the configured `C.UTF-8` locale; the shared presentation SCSS reported four variables before declaration. Neither warning prevented output generation.
-- Canonical release-packaging dry run: passed again after the screenshot correction for `L00-v0.1.0-20260928`; the generated public manifest contains 16 checksums and the expected `code/cviceni.R` and `data/palmer_penguins.csv` routes.
+- Canonical release-packaging dry run: passed again after the screenshot correction; the manifest is tag-date agnostic within the validated `L00-v*` pattern, and the release target is now `L00-v0.1.0-20260913`. The generated public manifest contains 16 checksums and the expected `code/cviceni.R` and `data/palmer_penguins.csv` routes.
 - Direct browser rendering of the self-contained `rstudio-overview.svg` confirmed that the embedded screenshot and numbered panel overlays remain visible. The other four SVGs have the same embedded-image structure and passed the source/reference checks.
 - Temporary validation bundles and browser captures were removed after inspection.
 
@@ -83,14 +83,14 @@ No workflow records, answer keys, private notes, repository metadata, or unliste
   - `https://cuni-natur-biostatistics.github.io/L00/current/presentation/`
   - `https://cuni-natur-biostatistics.github.io/L00/current/code/cviceni.R`
   - `https://cuni-natur-biostatistics.github.io/L00/current/data/palmer_penguins.csv`
-- Intended immutable root: `https://cuni-natur-biostatistics.github.io/L00/releases/L00-v0.1.0-20260928/`
+- Intended immutable root: `https://cuni-natur-biostatistics.github.io/L00/releases/L00-v0.1.0-20260913/`
 - Pages configuration: enabled with `build_type: workflow`, public Pages output, and enforced HTTPS. Earlier preview runs failed at `actions/configure-pages` because Pages had not yet been enabled; that configuration blocker is resolved.
 - Environment protection: the `github-pages` environment uses custom deployment policies with exactly two rules: branch `main` and tag pattern `L00-v*`.
-- Preview deployment: manual `Publish preview` run [34712220880](https://github.com/CUNI-NATUR-Biostatistics/L00/actions/runs/34712220880) succeeded from `main` at `222ca71`. Both intended HTML routes return HTTP 200.
-- Preview inspection: the learning-material page and presentation title slide were inspected from the deployed Pages site at desktop width; the learning-material page was also inspected at a narrow 500-pixel viewport. Typography, layout, table treatment, presentation controls, slide count, and responsive wrapping are readable. A later inspection deeper in the learning page found that five inline HTML SVG blocks retained relative links to `figures/rstudio-fresh-install.png`, which the preview workflow does not publish. The local correction removes those paths and embeds the screenshot bytes inside the five SVG files; deployed verification remains pending the fix merge and automatic preview run.
+- Preview deployment: merge-triggered `Publish preview` run [34745523122](https://github.com/CUNI-NATUR-Biostatistics/L00/actions/runs/34745523122) succeeded from `main` at `04f7fb7`. Both intended HTML routes return HTTP 200.
+- Preview inspection: the learning-material page and presentation title slide were inspected from the deployed Pages site at desktop width; the learning-material page was also inspected at a narrow 500-pixel viewport. Typography, layout, table treatment, presentation controls, slide count, and responsive wrapping are readable. A later inspection deeper in the learning page found five broken nested PNG paths. PR #6 made the five SVG wrappers self-contained and reused them in HTML and PDF. Post-merge inspection found five embedded SVG resources, each with one embedded PNG and no external screenshot path; direct browser renders confirmed the overview and four panel crops remain visually correct.
 - Student download route: preview intentionally publishes only the two HTML review routes, so `/preview/code/` and `/preview/data/` return 404. The canonical bundle maps the script and CSV to `code/cviceni.R` and `data/palmer_penguins.csv`; real browser downloads from `/current/` remain pending the stable tag.
-- Lab-account route: pending representative-room test of CRAN access, writable user library, project creation, downloads, relative paths, output creation, restart, and full rerun.
-- Failure routes: the committed CSV makes the core lesson independent of package installation after download; the clean-session solution and failed-install/no-network classroom route are documented and validated in the exercise record. A room-account rehearsal remains pending.
+- Lab-account route: the representative-room test of CRAN access, writable user library, project creation, downloads, relative paths, output creation, restart, and full rerun was not completed before release. On 2026-09-13 the course owner explicitly accepted this remaining risk so L00 could be published for colleague review.
+- Failure routes: the committed CSV makes the core lesson independent of package installation after download; the clean-session solution and failed-install/no-network classroom route are documented and validated in the exercise record. The course owner explicitly waived the additional room-account rehearsal before this release.
 - HUB refresh: `HUB_APP_ID` and `HUB_APP_PRIVATE_KEY` are not configured in L00. After the stable release, an authorized manual dispatch of `Publish course hub` will therefore be required.
 
 ## Final validation checklist
@@ -112,16 +112,16 @@ No workflow records, answer keys, private notes, repository metadata, or unliste
 - `github-pages` permits only `main` and `L00-v*`: [x]
 - Preview deployed and visually inspected: [x]
 - Stable student downloads tested from `/current/`: [ ]
-- Representative lab-account and failure-route rehearsal completed: [ ]
-- Final human release approval recorded: [ ]
+- Representative lab-account and failure-route rehearsal completed: [ ], explicitly waived for this release by the course owner on 2026-09-13
+- Final human release approval recorded: [x], Ondřej Mottl on 2026-09-13 for public colleague review
 
 ## Release summary
 
-- Version/tag target: `L00-v0.1.0-20260928`
+- Version/tag target: `L00-v0.1.0-20260913`
 - Main lesson changes: a voluntary, beginner-first 90-minute R/RStudio orientation built around teacher switching between short slides, live RStudio demonstration, student action, and observable checkpoints; a standalone written guide; a 22-slide presentation; one classroom R script; and an attributed Palmer Penguins CSV.
-- Known limitations: stable public downloads cannot be tested until the release tag exists; the representative computer-room rehearsal is pending; automatic HUB dispatch secrets are absent; the presentation is approved as usable but remains open to evidence-based lecturer feedback before the scheduled release.
+- Known limitations: stable public downloads cannot be tested until the release tag exists; the representative computer-room rehearsal was waived; automatic HUB dispatch secrets are absent; the presentation is approved as usable but remains open to evidence-based lecturer feedback after publication.
 
 ## Decision
 
-- [ ] Ready for release
-- Notes: local content, render, licence, privacy, packaging, Pages, environment-protection, and preview checks pass. Do not create the stable tag until the representative lab rehearsal and final human approval are complete; verify `/current/` downloads immediately after the authorized tag/release workflow.
+- [x] Ready for release
+- Notes: local content, render, licence, privacy, packaging, Pages, environment-protection, and corrected preview checks pass. The course owner approved publication on 2026-09-13, accepted the risk of releasing without the representative lab rehearsal, and will solicit colleague feedback on the public lesson. Verify `/current/` downloads immediately after the separately authorized tag/release workflow; publish evidence-based corrections as a subsequent version.
