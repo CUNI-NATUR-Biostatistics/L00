@@ -174,30 +174,7 @@ Když v RStudiu napíšete příkaz, ale R není nainstalované, který z dvojic
 
 Po otevření RStudia uvidíte jedno okno rozdělené do několika oblastí. Jejich velikost a přesné pořadí se mohou lišit, názvy záložek ale zůstávají důležitými orientačními body.
 
-::: {.content-visible when-format="html"}
-<figure>
-<svg viewBox="0 0 1850 1051" role="img" aria-label="Snímek obrazovky RStudia se čtyřmi očíslovanými pracovními oblastmi." style="display:block;width:100%;height:auto;margin:0 auto;">
-  <image href="figures/rstudio-fresh-install.png" x="0" y="0" width="1850" height="1051"></image>
-  <g fill="#5D2890" stroke="#FFFFFF" stroke-width="8">
-    <circle cx="500" cy="280" r="48"></circle>
-    <circle cx="500" cy="780" r="48"></circle>
-    <circle cx="1425" cy="240" r="48"></circle>
-    <circle cx="1425" cy="750" r="48"></circle>
-  </g>
-  <g fill="#FFFFFF" font-family="Arial, sans-serif" font-size="58" font-weight="700" text-anchor="middle" dominant-baseline="central">
-    <text x="500" y="280">1</text>
-    <text x="500" y="780">2</text>
-    <text x="1425" y="240">3</text>
-    <text x="1425" y="750">4</text>
-  </g>
-</svg>
-<figcaption>Skutečné okno RStudia: 1 Source, 2 Console, 3 Environment a 4 záložky Files, Plots, Packages a Help.</figcaption>
-</figure>
-:::
-
-::: {.content-visible unless-format="html"}
 ![Skutečné okno RStudia: 1 Source, 2 Console, 3 Environment a 4 záložky Files, Plots, Packages a Help.](figures/rstudio-overview.svg){fig-alt="Snímek obrazovky RStudia se čtyřmi očíslovanými pracovními oblastmi." width="100%"}
-:::
 
 Snímek vytvořil uživatel Wikimedia Commons Rcragun a zveřejnil jej pod licencí [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). [Původní soubor a úplné informace o licenci](https://commons.wikimedia.org/wiki/File:RStudio_-_Fresh_Install.png).
 
@@ -210,18 +187,7 @@ Snímek vytvořil uživatel Wikimedia Commons Rcragun a zveřejnil jej pod licen
 
 ## Source: místo pro uložený kód
 
-::: {.content-visible when-format="html"}
-<figure>
-<svg viewBox="0 0 1000 575" role="img" aria-label="Výřez skutečného okna RStudia s editorem Source." style="display:block;width:88%;height:auto;margin:0 auto;">
-  <image href="figures/rstudio-fresh-install.png" x="0" y="-55" width="1850" height="1051"></image>
-</svg>
-<figcaption>Panel Source je textový editor. Zde vznikají a zůstávají uložené textové pokyny pro R.</figcaption>
-</figure>
-:::
-
-::: {.content-visible unless-format="html"}
 ![Panel Source je textový editor. Zde vznikají a zůstávají uložené textové pokyny pro R.](figures/rstudio-source.svg){fig-alt="Výřez skutečného okna RStudia s editorem Source." width="88%"}
-:::
 
 **Source je textový editor.** Píšete v něm R skripty: obyčejné textové soubory s koncovkou `.R`. Každý otevřený soubor má nahoře vlastní záložku. Vlevo se zobrazují čísla řádků a blikající kurzor ukazuje, kam budete psát.
 
@@ -240,18 +206,7 @@ Najděte na svém monitoru čísla řádků, záložku otevřeného souboru a tl
 
 ## Console: místo, kde R čeká na příkaz
 
-::: {.content-visible when-format="html"}
-<figure>
-<svg viewBox="0 0 1000 431" role="img" aria-label="Výřez skutečného okna RStudia s panelem Console a značkou větší než." style="display:block;width:88%;height:auto;margin:0 auto;">
-  <image href="figures/rstudio-fresh-install.png" x="0" y="-620" width="1850" height="1051"></image>
-</svg>
-<figcaption>Panel Console ukazuje značku &gt;, zadané příkazy, výsledky a zprávy od R.</figcaption>
-</figure>
-:::
-
-::: {.content-visible unless-format="html"}
 ![Panel Console ukazuje značku >, zadané příkazy, výsledky a zprávy od R.](figures/rstudio-console.svg){fig-alt="Výřez skutečného okna RStudia s panelem Console a značkou větší než." width="88%"}
-:::
 
 **Console je přímé spojení s běžícím programem R.** Značka `>` znamená: „R je připravené přijmout další příkaz.“ Kliknete-li za tuto značku, můžete příkaz napsat přímo a klávesou **Enter** jej okamžitě spustit.
 
@@ -292,18 +247,7 @@ Napíšete `10 + 5` do Source a pouze stisknete Ctrl + S. Objeví se už výsled
 
 ## Environment: co si R právě pamatuje
 
-::: {.content-visible when-format="html"}
-<figure>
-<svg viewBox="0 0 850 380" role="img" aria-label="Výřez skutečného okna RStudia s prázdným panelem Environment." style="display:block;width:82%;height:auto;margin:0 auto;">
-  <image href="figures/rstudio-fresh-install.png" x="-1000" y="-55" width="1850" height="1051"></image>
-</svg>
-<figcaption>Panel Environment ukazuje pojmenované výsledky, které si právě běžící R dočasně pamatuje.</figcaption>
-</figure>
-:::
-
-::: {.content-visible unless-format="html"}
 ![Panel Environment ukazuje pojmenované výsledky, které si právě běžící R dočasně pamatuje.](figures/rstudio-environment.svg){fig-alt="Výřez skutečného okna RStudia s prázdným panelem Environment." width="82%"}
-:::
 
 R si během práce může uchovávat výsledky pod jmény. Takovým pojmenovaným výsledkům říkáme **objekty**. Panel Environment nabízí přehled objektů, které má právě běžící R k dispozici.
 
@@ -317,18 +261,7 @@ Na snímku je Environment prázdný. Později vytvoříme první objekt a přím
 
 ## Files, Plots a Help: soubory, obrázky a nápověda
 
-::: {.content-visible when-format="html"}
-<figure>
-<svg viewBox="0 0 850 636" role="img" aria-label="Výřez skutečného okna RStudia se záložkami Files, Plots, Packages a Help." style="display:block;width:82%;height:auto;margin:0 auto;">
-  <image href="figures/rstudio-fresh-install.png" x="-1000" y="-415" width="1850" height="1051"></image>
-</svg>
-<figcaption>Pravá dolní oblast sdružuje několik záložek. Přepnutím záložky se mění obsah stejného místa.</figcaption>
-</figure>
-:::
-
-::: {.content-visible unless-format="html"}
 ![Pravá dolní oblast sdružuje několik záložek. Přepnutím záložky se mění obsah stejného místa.](figures/rstudio-tabs.svg){fig-alt="Výřez skutečného okna RStudia se záložkami Files, Plots, Packages a Help." width="82%"}
-:::
 
 V jedné oblasti se střídá několik záložek:
 
