@@ -61,19 +61,23 @@ slides_url <-
   )
 ```
 
-## První kroky v R a RStudiu
+## Jak vytvoříme obrázek z měření tučňáků a uchováme jeho postup? {.course-title .bg-indigo}
 
-<br>
-
-::: {.text-color-indigo_velvet .text-font-heading .text-size-heading1 .text-bold}
-`r display_name`
+::: {.course-title-mark}
+![Logo kurzu Biostatistika](../theme/course-logo-reversed.svg) BIOSTATISTIKA
 :::
 
-<br>
+::: {.course-title-number}
+L00
+:::
 
-[👤](https://ondrejmottl.github.io/) Ondřej Mottl
+::: {.course-title-formal}
+První kroky v R a RStudiu
+:::
 
-[Moodle](https://dl2.cuni.cz/course/view.php?id=106)
+::: {.course-title-link}
+[cuni-natur-biostatistics.github.io/materialy.html](https://cuni-natur-biostatistics.github.io/materialy.html)
+:::
 
 ::: {.notes}
 0-1 min. Nechte titulní snímek zobrazený a požádejte všechny, aby otevřeli RStudio. Kontrolujeme pouze to, že se otevře okno. Do žádného panelu zatím nic nepíšeme.

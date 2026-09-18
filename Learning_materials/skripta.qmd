@@ -15,13 +15,17 @@ format:
     theme:
       - flatly
       - ../theme/skripta_theme.scss
-    include-in-header: ../theme/fonts-include.html
+    include-in-header:
+      - "../theme/fonts-include.html"
+      - "../theme/skripta-favicon.html"
     embed-resources: true
   typst:
     toc: true
     toc-depth: 3
     output-file: "skripta_raw.pdf"
-    include-in-header: "skripta_theme.typ"
+    include-in-header:
+      - "skripta_theme.typ"
+      - "skripta-logo.typ"
     date: last-modified
 date: 2026/09/09
 date-format: long
