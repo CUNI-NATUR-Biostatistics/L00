@@ -495,12 +495,17 @@ dev.off()
 # Úlohy navíc -----
 #----------------------------------------------------------#
 
-# Tyto úlohy slouží rychlejším skupinám a pozdějšímu procvičení.
-# Jejich nedokončení neznamená, že hlavní úlohy nejsou hotové.
+# Úlohy navíc jsou dobrovolné. Nemusíte dokončit všechny tři části:
+# - L00-N01 až L00-N03 krátce opakují společnou cestu;
+# - L00-N07 až L00-N13 tvoří navazující práci s hodnotami a tabulkou;
+# - L00-N04 až L00-N06 procvičují obrázek, soubor a hledání chyby.
+#
+# V části L00-N07 až L00-N13 postupujte v uvedeném pořadí, protože
+# pozdější úlohy navazují na objekty a zápis z předchozích úloh.
 
 
 #--------------------------------------------------#
-## Příkazy, funkce a kontrola dat -----
+## Krátké opakování příkazů, funkcí a tabulky -----
 #--------------------------------------------------#
 
 #----------------------------------------#
@@ -537,7 +542,7 @@ dev.off()
 ### Úloha navíc | L00-N03 -----
 #----------------------------------------#
 
-# Zadání: Zobrazte poslední tři řádky tabulky.
+# Zadání: Zobrazte poslední tři řádky tabulky data_tucnaci.
 
 # Vaše řešení:
 
@@ -545,8 +550,237 @@ dev.off()
 # Očekávaný výsledek: Tři řádky tučňáků druhu Chinstrap;
 # poslední řádek obsahuje 198 mm a 3775 g.
 # Nápověda 1: Potřebujete obdobu head(), která pracuje s koncem tabulky.
-# Nápověda 2: Použijte tail() a nastavte n = 3.
+# Nápověda 2: Použijte tail() a nastavte x = data_tucnaci a n = 3.
 # Interpretace: Změnil se počet řádků původní tabulky?
+
+
+#--------------------------------------------------#
+## Od sloupce tabulky k vektoru -----
+#--------------------------------------------------#
+
+# V grafu jsme pomocí $ vybrali sloupce tabulky. Znak $ tedy znamená:
+# z této tabulky vyber sloupec s uvedeným jménem. Jeden vybraný sloupec
+# je posloupnost hodnot, které v R říkáme vektor.
+
+# Vybereme sloupec s hmotností a uložíme jej jako samostatný vektor.
+vec_hmotnost <-
+  data_tucnaci$body_mass_g
+
+# Zkontrolujeme prvních pět hodnot vektoru.
+head(
+  x = vec_hmotnost,
+  n = 5
+)
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N07 -----
+#----------------------------------------#
+
+# Zadání: Pomocí $ vyberte z data_tucnaci sloupec flipper_length_mm
+# a uložte jej jako vec_delka_kridla. Funkcí head() vypište jeho první
+# tři hodnoty. Před spuštěním odhadněte výsledek podle prvních řádků tabulky.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: První tři hodnoty jsou 181, 186 a 195.
+# Nápověda 1: Nejprve vyberte pojmenovaný sloupec, potom uložte výsledek.
+# Nápověda 2: Za data_tucnaci napište $ a jméno sloupce; v head()
+# nastavte x na vytvořený vektor a n = 3.
+# Interpretace: Jaký je vztah mezi sloupcem tabulky a objektem vec_delka_kridla?
+
+
+# Funkce c() spojí několik jednotlivých hodnot do jednoho vektoru.
+# Písmeno c zde znamená combine, tedy spojit.
+vec_hmotnost_cvicka <-
+  c(
+    3750,
+    3800,
+    3250,
+    3450,
+    3650
+  )
+
+vec_hmotnost_cvicka
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N08 -----
+#----------------------------------------#
+
+# Zadání: Pomocí c() vytvořte vec_delka_kridla_cvicka s hodnotami
+# 181, 186, 195, 193 a 190. Objekt potom vypište.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: R vypíše pět hodnot v zadaném pořadí.
+# Nápověda 1: Všechny délky patří do jednoho pojmenovaného objektu.
+# Nápověda 2: Použijte přiřazení <- a hodnoty oddělte čárkami uvnitř c().
+# Interpretace: Co udělala funkce c() s pěti samostatnými čísly?
+
+
+#--------------------------------------------------#
+## Pozice a hranaté závorky -----
+#--------------------------------------------------#
+
+# R počítá pozice od jedničky. U vektoru jeden údaj v hranatých
+# závorkách určuje, které hodnoty chceme získat:
+# - [2] vybere druhou hodnotu;
+# - [c(1, 3)] vybere první a třetí hodnotu.
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N09 -----
+#----------------------------------------#
+
+# Zadání: Z vec_delka_kridla_cvicka vyberte nejprve druhou hodnotu
+# a potom současně první a třetí hodnotu. Oba výsledky předpovězte,
+# než příkazy spustíte.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: Druhá hodnota je 186; první a třetí jsou 181 a 195.
+# Nápověda 1: Čísla v hranatých závorkách označují pozice ve vektoru.
+# Nápověda 2: Pro více pozic spojte čísla 1 a 3 pomocí c().
+# Interpretace: Proč druhý výběr vrací dvě hodnoty místo jedné?
+
+
+# Hranaté závorky mohou hodnotu také nahradit. Vlevo od <- určíme
+# pozici a vpravo novou hodnotu. Tuto změnu provedeme jen ve cvičném
+# vektoru, nikoli v původní tabulce.
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N10 -----
+#----------------------------------------#
+
+# Zadání: Ve vec_delka_kridla_cvicka nahraďte druhou hodnotu 186
+# hodnotou 187. Objekt vypište a ověřte, že ostatní hodnoty zůstaly stejné.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: Vektor obsahuje 181, 187, 195, 193 a 190.
+# Nápověda 1: Vyberte jen pozici, kterou chcete změnit.
+# Nápověda 2: Vlevo od <- použijte jméno vektoru a [2];
+# vpravo použijte novou hodnotu 187.
+# Interpretace: Která část příkazu určila místo změny?
+
+
+#--------------------------------------------------#
+## Řádky a sloupce tabulky -----
+#--------------------------------------------------#
+
+# U tabulky zápis [řádek, sloupec] vybírá ve dvou směrech. Čárka
+# odděluje řádky vlevo od sloupců vpravo.
+
+# První řádek a druhý sloupec obsahují délku křídla prvního tučňáka.
+data_tucnaci[1, 2]
+
+# Prázdné místo za čárkou znamená všechny sloupce vybraného řádku.
+data_tucnaci[1, ]
+
+# Prázdné místo před čárkou znamená všechny řádky vybraného sloupce.
+# Pomocí head() zobrazíme jen první tři hodnoty dlouhého sloupce.
+head(
+  x = data_tucnaci[, 2],
+  n = 3
+)
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N11 -----
+#----------------------------------------#
+
+# Zadání: Z data_tucnaci vypište hodnotu ve druhém řádku a třetím
+# sloupci. Potom vypište celý druhý řádek a pomocí head() první tři
+# hodnoty celého druhého sloupce.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: Jedna buňka obsahuje 3800; druhý řádek patří
+# tučňákovi Adelie s hodnotami 186 mm a 3800 g; první tři hodnoty
+# druhého sloupce jsou 181, 186 a 195.
+# Nápověda 1: Přeneste ukázku prvního řádku a druhého sloupce
+# na nové požadované pozice.
+# Nápověda 2: Začněte výběrem [2, 3]; pro celý druhý řádek ponechte
+# místo za čárkou prázdné a výběr druhého sloupce vložte do head().
+# Interpretace: Co určují čísla vlevo a vpravo od čárky?
+
+
+#--------------------------------------------------#
+## Bezpečná úprava kopie tabulky -----
+#--------------------------------------------------#
+
+# Pro další procvičení nejprve vytvoříme kopii. Původní data_tucnaci
+# tak zůstanou beze změny.
+data_tucnaci_extra <-
+  data_tucnaci
+
+# Výpočet s vektorem proběhne pro každou jeho hodnotu. Převedeme si
+# cvičné hmotnosti z gramů na kilogramy.
+vec_hmotnost_cvicka / 1000
+
+# Zápis tabulka$novy_sloupec <- hodnoty přidá do tabulky pojmenovaný
+# sloupec. Počet nových hodnot musí odpovídat počtu řádků tabulky.
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N12 -----
+#----------------------------------------#
+
+# Zadání: Do data_tucnaci_extra přidejte pomocí $ nový sloupec
+# hmotnost_kg. Vypočítejte jej jako body_mass_g dělené 1000.
+# Vypište první tři řádky kopie a porovnejte její jména sloupců
+# s původním objektem data_tucnaci.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: Kopie má nový čtvrtý sloupec; jeho první tři
+# hodnoty jsou 3.75, 3.8 a 3.25. Původní data_tucnaci mají stále
+# pouze tři původní sloupce.
+# Nápověda 1: Znak $ může pojmenovat také nový sloupec; hodnoty
+# vypočítáte z již existujícího sloupce stejné tabulky.
+# Nápověda 2: Vlevo od <- spojte data_tucnaci_extra, $ a hmotnost_kg;
+# vpravo vyberte body_mass_g z kopie a vydělte jej 1000.
+# Interpretace: Proč jsme před úpravou vytvořili nový objekt?
+
+
+#--------------------------------------------------#
+## Podmínka vybírá hodnoty a řádky -----
+#--------------------------------------------------#
+
+# Porovnání každé hodnoty s číslem vytvoří hodnoty TRUE a FALSE.
+vec_hmotnost_cvicka > 3500
+
+# Stejnou podmínku můžeme vložit do hranatých závorek. Zůstanou pouze
+# hodnoty na pozicích, kde podmínka vrací TRUE.
+vec_hmotnost_cvicka[vec_hmotnost_cvicka > 3500]
+
+
+#----------------------------------------#
+### Úloha navíc | L00-N13 -----
+#----------------------------------------#
+
+# Zadání: Z data_tucnaci_extra vyberte celé řádky tučňáků s hodnotou
+# body_mass_g větší než 6000. Podmínku sestavte ze sloupce vybraného
+# pomocí $ a za čárkou ponechte všechny sloupce.
+
+# Vaše řešení:
+
+
+# Očekávaný výsledek: Výběr obsahuje dva tučňáky druhu Gentoo
+# s hmotnostmi 6050 g a 6300 g a všechny čtyři sloupce kopie.
+# Nápověda 1: Porovnání celého sloupce vytvoří jednu hodnotu TRUE
+# nebo FALSE pro každý řádek tabulky.
+# Nápověda 2: Podmínku se sloupcem body_mass_g vložte před čárku;
+# místo za čárkou ponechte prázdné.
+# Interpretace: Co určilo vybrané řádky a proč zůstaly všechny sloupce?
 
 
 #--------------------------------------------------#
@@ -557,7 +791,8 @@ dev.off()
 ### Úloha navíc | L00-N04 -----
 #----------------------------------------#
 
-# Zadání: Vytvořte graf s modrými body a vlastním hlavním titulkem.
+# Zadání: Vytvořte z původního data_tucnaci graf s modrými body
+# a vlastním hlavním titulkem.
 
 # Vaše řešení:
 
@@ -604,6 +839,13 @@ dev.off()
 # Nápověda 1: Porovnejte jméno v příkazu se jmény v Environment.
 # Nápověda 2: Chybí poslední písmeno i ve jménu data_tucnaci.
 # Interpretace: Proč je přesné jméno objektu součástí postupu?
+
+
+# Extra část jste zvládli, pokud dokážete vlastními slovy vysvětlit:
+# - jak spolu souvisejí sloupec tabulky a samostatně uložený vektor;
+# - co vybírá $ a co určují pozice uvnitř hranatých závorek;
+# - proč upravujeme kopii tabulky místo původních dat;
+# - jak hodnoty TRUE a FALSE rozhodují o výběru.
 
 
 #----------------------------------------------------------#
