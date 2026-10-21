@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/CUNI-NATUR-Biostatistics/_internal/main/pollslive/quiz.schema.json",
+  "$schema": "https://cuni-natur-biostatistics.github.io/schemas/pollslive-quiz-v2.json",
   "schemaVersion": 2,
   "academicYear": "2026-27",
   "lesson": "L02",
@@ -29,7 +29,7 @@
         { "id": "a", "label": "Replace option A" },
         { "id": "b", "label": "Replace option B" }
       ],
-      "correctOptionId": "a",
+      "correctOptionId": "b",
       "explanation": "Replace with a short explanation grounded in the displayed evidence.",
       "media": {
         "path": "assets/replace-question-two.png",
